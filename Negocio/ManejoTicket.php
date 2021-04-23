@@ -75,6 +75,17 @@ class ManejoTicket
         $TicketDAO->modificarEstado($ticket);
     }
 
+    public static function pasarSiguienteNivel($ticket,$nivel,$cod_empleado,$cantidad)
+    {
+        $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
+        $TicketDAO->siguienteNivel($ticket,$nivel);
+        if($cantidad>0){
+            $TicketDAO->restarTicket($cod_empleado);
+        }
+        
+     
+    }
+
     public static function usuariosxdominio()
     {
         $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);

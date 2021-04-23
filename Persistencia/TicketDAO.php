@@ -92,7 +92,7 @@ class TicketDAO implements DAO
     public function ticketsCliente($cod_empleado)
     {
 
-        $sql = "select nom_cliente, nom_ticket, descripción_ticket, fecha_creacion from 
+        $sql = "select nom_cliente, nom_ticket, descripción_ticket, fecha_creacion, cod_ticket from 
         cliente,ticket where 
         ticket.cod_empleado =".$cod_empleado." and
         cliente.cod_cliente = ticket.cod_cliente and
@@ -107,6 +107,7 @@ class TicketDAO implements DAO
             $ticket->setNom_ticket($row[1]);
             $ticket->setDescripción_ticket($row[2]);            
             $ticket->setFecha_creacion($row[3]);
+            $ticket->setCod_ticket($row[4]);
             array_push($tickets, $ticket);
         }
         return $tickets;
@@ -144,6 +145,36 @@ class TicketDAO implements DAO
     {
         $sql = "UPDATE TICKET SET estado_del_ticket= 'revisado' where cod_ticket = " . $ticket. "";
         pg_query($this->conexion, $sql);
+    }
+
+    public function restarTicket($cod_empleado)
+    {
+        $sql = "UPDATE empelado SET cantidad_de_tickets= cantidad_de_tickets-1 WHERE cod_empleado=.$cod_empleado.";
+        pg_query($this->conexion, $sql);
+    }
+
+    public function siguienteNivel($ticket,$nivel)
+    {
+
+        $sqlCodEmpleado = "SELECT cod_empleado FROM empleado
+        WHERE cantidad_de_tickets = (SELECT MIN(cantidad_de_tickets) FROM empleado) and
+		nivel_empleado = ".$nivel."
+        ORDER BY cod_empleado limit 1";
+        $codEmpleado = 0;
+        if (!$resultado = pg_query($this->conexion, $sqlCodEmpleado)) die();        
+        while ($row = pg_fetch_array($resultado)) {          
+            $codEmpleado = $row[0];
+        }    
+
+
+        $sql = "UPDATE TICKET SET cod_empleado= ".$codEmpleado." where cod_ticket = " . $ticket. "";
+        pg_query($this->conexion, $sql);
+
+        $sql1 = "UPDATE empelado SET cantidad_de_tickets= cantidad_de_tickets+1 WHERE cod_empleado=.$codEmpleado.";
+        pg_query($this->conexion, $sql1);
+
+        
+
     }
 
     /**

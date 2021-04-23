@@ -60,7 +60,10 @@ $prueba = ManejoTicket::getList();
                     <td align="center">'.$t->getNom_ticket().'</td>
                     <td align="center">'.$t->getDescripción_ticket().'</td>
                     <td align="center">'.$t->getFecha_creacion().'</td>
-                    <td align="center"><a href="SolucionTicket.php?value=1&cod_ticket='.$t->getCod_ticket().'" class="scrollto">✔️</a><b href="SolucionTicket.php?value=0&cod_ticket='.$t->getCod_ticket().'" class="scrollto">❌</b></td> 
+                    <td align="center">
+                    <a href="SolucionTicket.php?value=1&cod_ticket='.$t->getCod_ticket().'" class="scrollto">✔️</a>
+                    <a href="SolucionTicket.php?value=0&cod_ticket='.$t->getCod_ticket().'" class="scrollto">❌</a>
+                    </td> 
                                
                 </tr>'
         ;
