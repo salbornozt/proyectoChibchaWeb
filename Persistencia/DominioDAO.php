@@ -77,14 +77,14 @@ class DominioDAO implements DAO
     public function create($dominio)
     {
 
-        $sql = "insert into DOMINIO values (" . $dominio->getCod_dominio() . ",
+        $sql = "insert into DOMINIO (cod_sitio_web,cod_paquete,cod_planPago,url,fecha_creacion,cod_distribuidor) values (
                                             " . $dominio->getCod_sitio_web() . ",
                                             " . $dominio->getCod_paquete() . ",
                                             " . $dominio->getCod_planPago() . ",
                                             '" . $dominio->geturl() . "',
                                             '" . $dominio->getFecha_creacion() . "',
-                                            " . $dominio->getCod_distribuidor() . ",
-                                        );";
+                                            " . $dominio->getCod_distribuidor() . "
+                                        )";
 
         pg_query($this->conexion, $sql);
     }

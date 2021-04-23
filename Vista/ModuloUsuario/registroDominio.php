@@ -12,7 +12,14 @@ require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoDi
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Paquete.php';
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoPaquete.php';
 
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/SitioWeb.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoSitioWeb.php';
 
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Tipo_tarjeta.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoTipo_tarjeta.php';
+
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/TarjetaCredito.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoTarjetaCredito.php';
 
 $obj = new Conexion();
 $conexion = $obj->conectarDB();
@@ -22,6 +29,15 @@ $_SESSION['distri']=$_GET['distri'];
 ManejoDistribuidor::setConexionBD($conexion);
 ManejoPaquete::setConexionBD($conexion);
 //$lista = ManejoDistribuidor::consultarTicketCodigoEmpleado(1);
+ManejoSitioWeb::setConexionBD($conexion);
+ManejoTarjetaCredito::setConexionBD($conexion);
+ManejoTipo_tarjeta::setConexionBD($conexion);
+$cod_cliente = "{$_SESSION['cod_cliente']}";
+
+$cliente_tarjeta = ManejoTarjetaCredito::consultarTarjetaCreditoPorCliente($cod_cliente);
+$tipo_tarjeta = ManejoTipo_tarjeta::consultarTipo_tarjeta($cliente_tarjeta->getCod_tipo_tarjeta());
+$list_tarjeta = ManejoTipo_tarjeta::getList();
+
 $lista = ManejoDistribuidor::getList();
 //$prueba1 = ManejoDistribuidor::consultarTicket(2);
 $dom = "{$_SESSION['dom']}";
@@ -219,23 +235,42 @@ $cod_pack = "{$_SESSION['pack']}";
 
           <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="100">
           
-            <form action="pago/index.php" method="post">
-
+            <form action="actions/registerDomain.php" method="post">
             <br><br>
-
               <?php
-              echo '<input type="hidden" name="plan_pago" id="plan_pago" value ='.$plan_pago.'>
-
-              <input type="hidden" name="plan_pago" id="plan_pago" value ='.$plan_pago.'>'
+              echo '<input type="hidden" name="cod_paquete" id="cod_paquete" value ='.$cod_p.'>
+              <input type="hidden" name="url" id="url" value ='.$dom.'>
+              <input type="hidden" name="cod_distribuidor" id="cod_distribuidor" value ='.$cod_distribuidor.'>
+              <input type="hidden" name="cod_planpago" id="cod_planpago" value ='.$plan_pago.'>';
               ?>
-
+              <h4>Página Web</h4>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="web_name" id="web_name" placeholder="Nombre" required>
+              <select class="form-control" name="cod_sitio_web" id="cod_sitio_web">
+              <option value="" selected disabled hidden>Seleccione</option>
+              <?php
+                  $consultaWeb = ManejoSitioWeb::consultarSitioWebPorCliente($cod_cliente);
+                  if (is_null($consultaWeb)){
+                  }else{
+                    echo '<option selected value='.$consultaWeb->getCod_sitio_web().'>'.$consultaWeb->getNombre_pagina_web().'</option>';
+                  }        
+              ?>
+                </select>
+              </div>
+              <br>
+              <br>
+              <h4>Método de pago</h4>
+              <div class="form-group mt-3">
+              <select class="form-control" name="pay_method" id="pay_method">
+              <option value="" selected disabled hidden>Seleccione</option>
+              <?php
+                  if (is_null($cliente_tarjeta)){
+                  }else{
+                    echo '<option selected value='.$cliente_tarjeta->getCod_tarjeta_credito().'>'. "".$cliente_tarjeta->getNumero_tarjeta()." - ".$tipo_tarjeta->getNombre_casa() .'</option>';
+                  }    
+              ?>
+                </select>
               </div>
               
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="web_desc" id="web_desc" rows="5" placeholder="Descripción" required></textarea>
-              </div>
               <br>
               <div class="text-center"><input type="submit" class="btn btn-outline-success" value="Registrar"></div>
             </form>
