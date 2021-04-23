@@ -9,6 +9,8 @@ $conexion = $obj->conectarDB();
 ManejoDistribuidor::setConexionBD($conexion);
 
 $distribuidor = ManejoDistribuidor::getList();
+$distribuidor2 = ManejoDistribuidor::getListActivar();
+$distribuidor3 = ManejoDistribuidor::getListDesactivar();
 
 ?>
 <div class="container-fluid">
@@ -71,7 +73,7 @@ $distribuidor = ManejoDistribuidor::getList();
                                     <tr><th>  <p> ID: <select name="id_di">
                                            
                                                     <?php 
-                                                    foreach($distribuidor as $c){
+                                                    foreach($distribuidor3 as $c){
                                                      echo'
                                                         <option>'.$c->getCod_distribuidor().'</option>';
                                                     }?>
@@ -105,7 +107,7 @@ $distribuidor = ManejoDistribuidor::getList();
                                     <tr><th>  <p> ID: <select name="id_di">
                                            
                                                     <?php 
-                                                    foreach($distribuidor as $c){
+                                                    foreach($distribuidor2 as $c){
                                                      echo'
                                                         <option>'.$c->getCod_distribuidor().'</option>';
                                                     }?>

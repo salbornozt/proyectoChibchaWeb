@@ -244,4 +244,55 @@ class DistribuidorDAO implements DAO
 
         pg_query($this->conexion, $sql);
     }
+
+     /**
+     * Method to get an DistribuidorDAO object
+     *
+     * @param Object $conexion
+     * @return DistribuidorDAO
+     */
+    public function getListActivar()
+    {
+
+        $sql = "SELECT cod_distribuidor
+        FROM distribuidor
+        WHERE distribuidor.cod_estado = 2
+        ";
+        $list = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $item = new Distribuidor();
+            $item->setCod_distribuidor($row[0]);
+           
+            array_push($list, $item);
+
+        }
+        return $list;
+
+    }
+     /**
+     * Method to get an DistribuidorDAO object
+     *
+     * @param Object $conexion
+     * @return DistribuidorDAO
+     */
+    public function getListDesactivar()
+    {
+
+        $sql = "SELECT cod_distribuidor
+        FROM distribuidor
+        WHERE distribuidor.cod_estado = 1
+        ";
+        $list = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $item = new Distribuidor();
+            $item->setCod_distribuidor($row[0]);
+           
+            array_push($list, $item);
+
+        }
+        return $list;
+
+    }
 }

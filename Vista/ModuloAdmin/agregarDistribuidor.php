@@ -32,8 +32,8 @@ if (isset($_POST['addAgregarDistribuidor']) == true) {
        
     ManejoDistribuidor::creaDistribuidorxAdmin($distribuidor);
 }
-/*echo '<script>
+echo '<script>
     alert("Se creo el distribuidor '.$nombreCompleto.'");
     window.location="../Admin.php?menu=distribuidor";        
     
-    </script>';*/
+    </script>';

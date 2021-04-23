@@ -104,6 +104,33 @@
             $distribuidorDAO->creaDistribuidorxAdmin($distribuidor);
         }
 
+         /**
+        * Create an administrador
+        * @param Empleado administrador to create
+        * @return void
+        */
+        public static function getListActivar()
+        {
+            $distribuidorDAO = DistribuidorDAO::getDistribuidorDAO(self::$conexionBD);
+            $distribuidor = $distribuidorDAO->getListActivar();
+            return $distribuidor;
+           
+        }
+
+         /**
+        * Create an administrador
+        * @param Empleado administrador to create
+        * @return void
+        */
+        public static function getListDesactivar()
+        {
+            $distribuidorDAO = DistribuidorDAO::getDistribuidorDAO(self::$conexionBD);
+            $distribuidor = $distribuidorDAO->getListDesactivar();
+            return $distribuidor;
+           
+        }
+      
+
 	    /**
 	    * Change the conexion
 	    */
