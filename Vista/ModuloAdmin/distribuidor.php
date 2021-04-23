@@ -166,13 +166,21 @@ $distribuidor3 = ManejoDistribuidor::getListDesactivar();
                                         <?php 
                                         foreach($distribuidor as $d){
 
+                                            
+                                            $peticion=$d->getEstado_distribuidor();
+                                            if($peticion==1){
+                                                $estado1='Activo';
+                                            }elseif($peticion==2){
+                                                $estado1='Desactivo';
+                                            };
+
                                             echo'
                                             <tr>
                                             <td>'.$d->getCod_distribuidor().'</td>
                                             <td>'.$d->getNom_distribuidor().'</td>
                                             <td>'.$d->getCorreo_distribuidor().'</td>
                                             <td>'.$d->getNom_categoria_distribuidor().'</td>
-                                            <td>'.$d->getEstado_distribuidor().'</td>
+                                            <td>'.$estado1.'</td>
                                            
                                             </tr>';
 
