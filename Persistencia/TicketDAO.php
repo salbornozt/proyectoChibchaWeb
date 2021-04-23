@@ -149,7 +149,7 @@ class TicketDAO implements DAO
 
     public function restarTicket($cod_empleado)
     {
-        $sql = "UPDATE empelado SET cantidad_de_tickets= cantidad_de_tickets-1 WHERE cod_empleado=.$cod_empleado.";
+        $sql = "UPDATE empleado SET cantidad_de_tickets= cantidad_de_tickets-1 WHERE cod_empleado=".$cod_empleado;
         pg_query($this->conexion, $sql);
     }
 
@@ -157,8 +157,8 @@ class TicketDAO implements DAO
     {
 
         $sqlCodEmpleado = "SELECT cod_empleado FROM empleado
-        WHERE cantidad_de_tickets = (SELECT MIN(cantidad_de_tickets) FROM empleado) and
-		nivel_empleado = ".$nivel."
+        WHERE cantidad_de_tickets = (SELECT MIN(cantidad_de_tickets) FROM empleado where nivel_empleado = ".$nivel.") 
+		
         ORDER BY cod_empleado limit 1";
         $codEmpleado = 0;
         if (!$resultado = pg_query($this->conexion, $sqlCodEmpleado)) die();        
@@ -170,7 +170,7 @@ class TicketDAO implements DAO
         $sql = "UPDATE TICKET SET cod_empleado= ".$codEmpleado." where cod_ticket = " . $ticket. "";
         pg_query($this->conexion, $sql);
 
-        $sql1 = "UPDATE empelado SET cantidad_de_tickets= cantidad_de_tickets+1 WHERE cod_empleado=.$codEmpleado.";
+        $sql1 = "UPDATE empleado SET cantidad_de_tickets= cantidad_de_tickets+1 WHERE cod_empleado=".$codEmpleado;
         pg_query($this->conexion, $sql1);
 
         
