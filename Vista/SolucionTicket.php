@@ -8,6 +8,7 @@ $obj = new Conexion();
 $conexion = $obj->conectarDB();
 
 ManejoTicket::setConexionBD($conexion);
+
 $cod_ticket=(int)$_GET["cod_ticket"];
 
 
