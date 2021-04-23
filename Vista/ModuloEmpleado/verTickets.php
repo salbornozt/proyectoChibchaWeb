@@ -8,7 +8,7 @@ $obj = new Conexion();
 $conexion = $obj->conectarDB();
 
 ManejoTicket::setConexionBD($conexion);
-$lista = ManejoTicket::consultarTicketCodigoEmpleadoxCliente($_SESSION['cod_empleado']);
+$lista = ManejoTicket::consultarTicketCodigoEmpleado($_SESSION['cod_empleado']);
 $prueba = ManejoTicket::getList();
 //$prueba1 = ManejoTicket::consultarTicket(2);
 
@@ -31,7 +31,6 @@ $prueba = ManejoTicket::getList();
         echo '<div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body">' . $t->getNom_ticket() . '</div>
-                <div class="card-body">' . $t->getNom_cliente() . '</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="?menu=gestionTickets">'.$t->getFecha_creacion().'</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

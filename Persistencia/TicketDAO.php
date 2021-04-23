@@ -92,7 +92,7 @@ class TicketDAO implements DAO
     public function ticketsCliente($cod_empleado)
     {
 
-        $sql = "select cod_ticket,nom_cliente, nom_ticket, descripción_ticket, fecha_creacion from 
+        $sql = "select nom_cliente, nom_ticket, descripción_ticket, fecha_creacion from 
         cliente,ticket where 
         ticket.cod_empleado =".$cod_empleado." and
         cliente.cod_cliente = ticket.cod_cliente and
@@ -103,11 +103,10 @@ class TicketDAO implements DAO
         if (!$resultado = pg_query($this->conexion, $sql)) die();
         while ($row = pg_fetch_array($resultado)) {
             $ticket = new Ticket();
-            $ticket->setCod_ticket($row[0]);
-            $ticket->setNom_cliente($row[1]);
-            $ticket->setNom_ticket($row[2]);
-            $ticket->setDescripción_ticket($row[3]);            
-            $ticket->setFecha_creacion($row[4]);
+            $ticket->setNom_cliente($row[0]);
+            $ticket->setNom_ticket($row[1]);
+            $ticket->setDescripción_ticket($row[2]);            
+            $ticket->setFecha_creacion($row[3]);
             array_push($tickets, $ticket);
         }
         return $tickets;
