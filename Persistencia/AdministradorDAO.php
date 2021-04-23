@@ -6,6 +6,11 @@ require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Persistencia/DAO
 /**
  *Represents the DAO of the admin entity
  */
+/**
+ *Represents the DAO of the admin entity
+ */ /**
+ *Represents the DAO of the admin entity
+ */
 class AdministradorDAO implements DAO
 {
 
@@ -45,12 +50,12 @@ class AdministradorDAO implements DAO
     public function consult($cod_administrador)
     {
 
-        $sql = "SELECT * FROM ADMINISTRADOR WHERE cod_administrador = ".$cod_administrador;
+        $sql = "SELECT * FROM ADMINISTRADOR WHERE cod_administrador = " . $cod_administrador;
 
-        if (!$resultado = pg_query($this->conexion, $sql))die();
-        
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+
         $row = pg_fetch_array($resultado);
-        
+
         $administrador = new getAdministrador();
 
         $administrador->setCod_administrador($row[0]);
@@ -63,17 +68,17 @@ class AdministradorDAO implements DAO
     }
 
 
-    public function verificarCuenta($correo,$pass)
+    public function verificarCuenta($correo, $pass)
     {
 
-        $sql = "SELECT * from administrador WHERE usuario_administrador = '".$correo."' and contraseña_administrador = '".$pass."'";
+        $sql = "SELECT * from administrador WHERE usuario_administrador = '" . $correo . "' and contraseña_administrador = '" . $pass . "'";
 
         if (!$resultado = pg_query($this->conexion, $sql)) die();
         $row = pg_fetch_array($resultado);
-        if($row[0] == null){
+        if ($row[0] == null) {
             return null;
         }
-       
+
 
         $administrador = new Administrador();
 
@@ -136,7 +141,7 @@ class AdministradorDAO implements DAO
 
         pg_query($this->conexion, $sql);
     }
-    
+
     /**
      * Method to get an AdministradorDAO object
      *
@@ -158,8 +163,8 @@ class AdministradorDAO implements DAO
             $administrador->setUsuario_administrador($row[2]);
             $administrador->setContraseña_administrador($row[3]);
             $administrador->setCod_usuario($row[4]);
-            
-            
+
+
             $administradors[] = $administrador;
         }
         return $administradors;
