@@ -189,6 +189,21 @@ class EmpleadoDAO implements DAO
     }
 
     /**
+     * Method that modifies an employeer entered by parameter
+     *
+     * @param Empleado $empleado
+     * @return void
+     */
+    public function modifyXEmpleadoXTicket($empleado)
+    {
+
+        $sql = "UPDATE EMPLEADO SET cantidad_de_tickets = " . $empleado->getCantidad_tickets() . "
+                                   where cod_empleado = " . $empleado->getCod_empleado() . "
+                                ";
+        pg_query($this->conexion, $sql);
+    }
+
+    /**
      * Method to delete a new employeer
      *
      * @param Empleado $empleado
@@ -247,7 +262,40 @@ class EmpleadoDAO implements DAO
         return $empleados;
     }
 
+    /**
+     * Method to get an Empleado object
+     *
+     * @param Object $conexion
+     * @return EmpleadoDAO
+     */
+    public function getListXEmpleadoXCantidadTickets()
+    {
 
+        $sql = "SELECT * FROM empleado
+        WHERE cantidad_de_tickets = (SELECT MIN(cantidad_de_tickets) FROM empleado)
+        ORDER BY cod_empleado limit 1";
+
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+
+        $empleados = array();
+
+        while ($row = pg_fetch_array($resultado)) {
+            $empleado = new Empleado();
+            $empleado->setCod_empleado($row[0]);
+            $empleado->setNom_empleado($row[1]);
+            $empleado->setCedula_empleado($row[2]);
+            $empleado->setCargo_empleado($row[3]);
+            $empleado->setContraseña_empleado($row[4]);
+            $empleado->setCorreo_empleado($row[5]);
+            $empleado->setCantidad_tickets($row[6]);
+            $empleado->setNivel_empleado($row[7]);
+            $empleado->setCod_peticion($row[8]);
+            $empleado->setCod_usuario($row[9]);
+
+            array_push($empleados, $empleado);
+        }
+        return $empleados;
+    }
 
     /**
      * Gets the object of this class. In case it is null, create it

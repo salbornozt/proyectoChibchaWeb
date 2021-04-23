@@ -17,6 +17,7 @@ session_start();
         <li><a class="nav-link scrollto" href="?menu=index#services">Servicios</a></li>
         <li><a class="nav-link scrollto" href="?menu=index#pricing">Precios</a></li>
         <li><a href="?menu=perfil">Perfil</a></li>
+        <li><a href="?menu=tickets">Tickets</a></li>
 
         <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
       </ul>

@@ -29,6 +29,13 @@ class ManejoTicket
         return $ticket;
     }
 
+    public static function consultarTicketxCliente($cod_ticket)
+    {
+
+        $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
+        $ticket = $TicketDAO->consultXCliente($cod_ticket);
+        return $ticket;
+    }
 
     public static function consultarTicketCodigoEmpleado($cod_empleado)
     {
@@ -62,6 +69,17 @@ class ManejoTicket
      * @param Ticket 
      * @return void
      */
+    public static function createTicketXCliente($ticket)
+    {
+        $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
+        $TicketDAO->createXCliente($ticket);
+    }
+
+    /**
+     * 
+     * @param Ticket 
+     * @return void
+     */
     public static function modifyTicket($ticket)
     {
         $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
@@ -75,15 +93,13 @@ class ManejoTicket
         $TicketDAO->modificarEstado($ticket);
     }
 
-    public static function pasarSiguienteNivel($ticket,$nivel,$cod_empleado,$cantidad)
+    public static function pasarSiguienteNivel($ticket, $nivel, $cod_empleado, $cantidad)
     {
         $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
-        $TicketDAO->siguienteNivel($ticket,$nivel);
-        if($cantidad>0){
+        $TicketDAO->siguienteNivel($ticket, $nivel);
+        if ($cantidad > 0) {
             $TicketDAO->restarTicket($cod_empleado);
         }
-        
-     
     }
 
     public static function usuariosxdominio()
@@ -91,7 +107,6 @@ class ManejoTicket
         $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
         $ticket = $TicketDAO->usuariosDominios();
         return $ticket;
-       
     }
 
     /**

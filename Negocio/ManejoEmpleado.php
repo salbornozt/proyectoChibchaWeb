@@ -80,6 +80,17 @@ class ManejoEmpleado
         $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
         $empleadoDAO->modify($empleado);
     }
+
+    /**
+     * Modify an categoria distribuidor
+     * @param Empleado categoria distribuidor to modify
+     * @return void
+     */
+    public static function modifyEmpleadoXTicket($empleado)
+    {
+        $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $empleadoDAO->modifyXEmpleadoXTicket($empleado);
+    }
     /**
      * Delete an categoria distribuidor
      * @param Empleado categoria distribuidor to modify
@@ -91,7 +102,7 @@ class ManejoEmpleado
         $empleadoDAO->delete($empleado);
     }
 
-      /**
+    /**
      * Delete an categoria distribuidor
      * @param Cliente categoria distribuidor to modify
      * @return void
@@ -110,6 +121,17 @@ class ManejoEmpleado
     {
         $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
         $empleado = $empleadoDAO->getList();
+        return $empleado;
+    }
+
+    /**
+     * List of categoria distribuidor
+     * @return Empleado[] List of all the categoria distribuidor in the Data Base
+     */
+    public static function getListXEmpleadoXCantidadTickets()
+    {
+        $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $empleado = $empleadoDAO->getListXEmpleadoXCantidadTickets();
         return $empleado;
     }
 

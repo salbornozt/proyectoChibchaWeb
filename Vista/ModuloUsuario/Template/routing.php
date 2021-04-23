@@ -6,7 +6,9 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == 'perfil') {
         include_once("../Vista/ModuloUsuario/perfil.php");
     }
-
+    if ($_GET['menu'] == 'tickets') {
+        include_once("../Vista/ModuloUsuario/tickets.php");
+    }
     if ($_GET['menu'] == 'editarPerfil') {
         include_once("../Vista/ModuloUsuario/editarPerfil.php");
     }

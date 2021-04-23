@@ -65,12 +65,38 @@ class TicketDAO implements DAO
         return $ticket;
     }
 
+    /**
+     * Method to query an user by his code type
+     *
+     * @param int $cod_cliente
+     * @return Ticket
+     */
+    public function consultXCliente($cod_cliente)
+    {
+
+        $sql = "SELECT * FROM TICKET WHERE cod_cliente= " . $cod_cliente;
+
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        $row = pg_fetch_array($resultado);
+
+        $ticket = new Ticket();
+
+        $ticket->setCod_ticket($row[0]);
+        $ticket->setNom_ticket($row[1]);
+        $ticket->setDescripción_ticket($row[2]);
+        $ticket->setEstado_del_ticket($row[3]);
+        $ticket->setFecha_creacion($row[4]);
+        $ticket->setCod_cliente($row[5]);
+        $ticket->setCod_empleado($row[6]);
+
+        return $ticket;
+    }
 
 
     public function ticketsEmpleado($cod_empleado)
     {
 
-        $sql = "SELECT * FROM TICKET WHERE cod_empleado= " . $cod_empleado. " and estado_del_ticket = 'sin revisar'";
+        $sql = "SELECT * FROM TICKET WHERE cod_empleado= " . $cod_empleado . " and estado_del_ticket = 'sin revisar'";
 
         $tickets = array();
         if (!$resultado = pg_query($this->conexion, $sql)) die();
@@ -94,7 +120,7 @@ class TicketDAO implements DAO
 
         $sql = "select cod_ticket,nom_cliente, nom_ticket, descripción_ticket, fecha_creacion, cod_ticket from 
         cliente,ticket where 
-        ticket.cod_empleado =".$cod_empleado." and
+        ticket.cod_empleado =" . $cod_empleado . " and
         cliente.cod_cliente = ticket.cod_cliente and
         estado_del_ticket = 'sin revisar'
         order by nom_cliente";
@@ -106,7 +132,7 @@ class TicketDAO implements DAO
             $ticket->setCod_ticket($row[0]);
             $ticket->setNom_cliente($row[1]);
             $ticket->setNom_ticket($row[2]);
-            $ticket->setDescripción_ticket($row[3]);            
+            $ticket->setDescripción_ticket($row[3]);
             $ticket->setFecha_creacion($row[4]);
             array_push($tickets, $ticket);
         }
@@ -114,7 +140,7 @@ class TicketDAO implements DAO
     }
 
     public function usuariosDominios()
-    {        
+    {
         $sql = "select cod_dominio,nom_cliente, url, nom_paquete, nom_distribuidor, nom_planpago
         from cliente, sitio_web, dominio, paquete, distribuidor, plan_pago where 
         cliente.cod_cliente = sitio_web.cod_cliente and
@@ -133,7 +159,7 @@ class TicketDAO implements DAO
             $usuario->setUrl($row[2]);
             $usuario->setNom_paquete($row[3]);
             $usuario->setNom_distribuidor($row[4]);
-            $usuario->setNom_planpago($row[5]);           
+            $usuario->setNom_planpago($row[5]);
 
             array_push($usuarios, $usuario);
         }
@@ -143,38 +169,35 @@ class TicketDAO implements DAO
 
     public function modificarEstado($ticket)
     {
-        $sql = "UPDATE TICKET SET estado_del_ticket= 'revisado' where cod_ticket = " . $ticket. "";
+        $sql = "UPDATE TICKET SET estado_del_ticket= 'revisado' where cod_ticket = " . $ticket . "";
         pg_query($this->conexion, $sql);
     }
 
     public function restarTicket($cod_empleado)
     {
-        $sql = "UPDATE empleado SET cantidad_de_tickets= cantidad_de_tickets-1 WHERE cod_empleado=".$cod_empleado;
+        $sql = "UPDATE empleado SET cantidad_de_tickets= cantidad_de_tickets-1 WHERE cod_empleado=" . $cod_empleado;
         pg_query($this->conexion, $sql);
     }
 
-    public function siguienteNivel($ticket,$nivel)
+    public function siguienteNivel($ticket, $nivel)
     {
 
         $sqlCodEmpleado = "SELECT cod_empleado FROM empleado
-        WHERE cantidad_de_tickets = (SELECT MIN(cantidad_de_tickets) FROM empleado where nivel_empleado = ".$nivel.") 
+        WHERE cantidad_de_tickets = (SELECT MIN(cantidad_de_tickets) FROM empleado where nivel_empleado = " . $nivel . ") 
 		
         ORDER BY cod_empleado limit 1";
         $codEmpleado = 0;
-        if (!$resultado = pg_query($this->conexion, $sqlCodEmpleado)) die();        
-        while ($row = pg_fetch_array($resultado)) {          
+        if (!$resultado = pg_query($this->conexion, $sqlCodEmpleado)) die();
+        while ($row = pg_fetch_array($resultado)) {
             $codEmpleado = $row[0];
-        }    
+        }
 
 
-        $sql = "UPDATE TICKET SET cod_empleado= ".$codEmpleado." where cod_ticket = " . $ticket. "";
+        $sql = "UPDATE TICKET SET cod_empleado= " . $codEmpleado . " where cod_ticket = " . $ticket . "";
         pg_query($this->conexion, $sql);
 
-        $sql1 = "UPDATE empleado SET cantidad_de_tickets= cantidad_de_tickets+1 WHERE cod_empleado=".$codEmpleado;
+        $sql1 = "UPDATE empleado SET cantidad_de_tickets= cantidad_de_tickets+1 WHERE cod_empleado=" . $codEmpleado;
         pg_query($this->conexion, $sql1);
-
-        
-
     }
 
     /**
@@ -187,6 +210,28 @@ class TicketDAO implements DAO
     {
 
         $sql = "insert into ticket values (" . $ticket->getCod_ticket() . ",
+                                            '" . $ticket->getNom_ticket() . "',
+                                            '" . $ticket->getDescripción_ticket() . "',
+                                            '" . $ticket->getEstado_del_ticket() . "',
+                                            '" . $ticket->getFecha_creacion() . "',
+                                            " . $ticket->getCod_cliente() . ",
+                                            " . $ticket->getCod_empleado() . "
+                                        );";
+
+        pg_query($this->conexion, $sql);
+    }
+
+    /**
+     * Method to create a new tiquete
+     *
+     * @param Ticket $ticket
+     * @return void
+     */
+    public function createXCliente($ticket)
+    {
+
+        $sql = "insert into ticket (nom_ticket, descripción_ticket, estado_del_ticket, fecha_creacion, cod_cliente, cod_empleado) 
+                                            values (
                                             '" . $ticket->getNom_ticket() . "',
                                             '" . $ticket->getDescripción_ticket() . "',
                                             '" . $ticket->getEstado_del_ticket() . "',
