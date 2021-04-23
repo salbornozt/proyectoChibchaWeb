@@ -9,6 +9,7 @@ $conexion = $obj->conectarDB();
 ManejoCliente::setConexionBD($conexion);
 
 $cliente = ManejoCliente::getList();
+$cliente2 = ManejoCliente::getListActivar();
 
 ?>
 
@@ -67,21 +68,21 @@ $cliente = ManejoCliente::getList();
                             <!--FIN MODAL AGREGAR CLIENTE-->
                             <p>.                 .</p>
 
-                             <!--MODAL ELIMINAR CLIENTE-->
-                            <div class="modal fade" id="info2">
+                              <!--MODAL HABILITAR CLIENTE-->
+                              <div class="modal fade" id="info3">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¿Que cliente desea eliminar?</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">¿Que cliente desea activar?</h5>
                             </div>
                             <div class="modal-body"> 
                             <center>
-                            <form method="post" action="ModuloAdmin/eliminarCliente.php">
+                            <form method="post" action="ModuloAdmin/activarCliente.php">
                             <table>
-                                    <tr><th>  <p> Cédula: <select name="cedula_op">
+                                    <tr><th>  <p> Cedula: <select name="cedula">
                                            
                                                     <?php 
-                                                    foreach($cliente as $c){
+                                                    foreach($cliente2 as $c){
                                                      echo'
                                                         <option>'.$c->getCedula_cliente().'</option>';
                                                     }?>
@@ -90,16 +91,16 @@ $cliente = ManejoCliente::getList();
                             </table>
                             </center><br>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger"  name='addEliminarCliente'>Eliminar</button>
+                            <button type="submit" class="btn btn-success"  name='activarCliente'>Activar</button>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                             </div>
                             </div></div></div></div>
                             <center>
                             </form>
 
-                            <span class="btn btn-danger" data-toggle="modal" data-target="#info2">Eliminar cliente</span>
+                            <span class="btn btn-success" data-toggle="modal" data-target="#info3">Activar cliente</span>
                             </center>
-                            <!--FIN MODAL ELIMINAR CLIENTE-->
+                            <!--FIN MODAL HABILITAR CLIENTE-->
                         </ol>
                          <!-- FIN PANEL BOTONES -->
 
@@ -142,6 +143,13 @@ $cliente = ManejoCliente::getList();
                                         <?php 
 
                                         foreach($cliente as $c){
+                                            $estado1='Activo';
+                                            $peticion=$c->getCod_peticion();
+                                            if($peticion==1){
+                                                $estado1='Activo';
+                                            }elseif($peticion==2){
+                                                $estado1='Desactivo';
+                                            };
 
                                             echo'
                                             <tr>
@@ -150,9 +158,7 @@ $cliente = ManejoCliente::getList();
                                             <td>'.$c->getCedula_cliente().'</td>
                                             <td>'.$c->getContraseña_cliente().'</td>
                                             <td>'.$c->getCorreo_cliente().'</td>
-                                            <td><span class="btn btn-info" data-toggle="modal" data-target="#info"><i class="far fa-check-circle"></i></span></td>
-                                               
-                                           
+                                            <td>'.$estado1.'</td>                                                                                 
                                             </tr>';
 
                                         }

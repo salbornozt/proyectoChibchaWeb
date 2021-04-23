@@ -258,4 +258,38 @@ class ClienteDAO implements DAO
 
         return self::$clienteDAO;
     }
+
+     /**
+     * Method to get an DistribuidorDAO object
+     *
+     * @param Object $conexion
+     * @return DistribuidorDAO
+     */
+    public function getListActivar()
+    {
+
+        $sql = "SELECT cedula_cliente
+        FROM cliente
+        WHERE cliente.cod_peticion = 2
+        ";
+        $list = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $item = new Cliente();
+            $item->setCedula_cliente($row[0]);
+           
+            array_push($list, $item);
+
+        }
+        return $list;
+
+    }
+
+    public function cambiarEstadoActivado($cedula_cliente)
+  
+    {
+        $sql = "UPDATE  CLIENTE SET COD_PETICION=1 WHERE cedula_cliente = " . $cedula_cliente;
+
+        pg_query($this->conexion, $sql);
+    }
 }

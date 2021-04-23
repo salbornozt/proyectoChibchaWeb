@@ -9,20 +9,18 @@ $conexion = $obj->conectarDB();
 ManejoCliente::setConexionBD($conexion);
 
 
-if (isset($_POST['addEliminarCliente']) == true) {
+if (isset($_POST['activarCliente']) == true) {
 
 
-	$nroIdentificacion = isset($_POST['cedula_op']) ? $_POST['cedula_op'] : null;
+	$nroIdentificacion = isset($_POST['cedula']) ? $_POST['cedula'] : null;
 
-    ManejoCliente::deleteCedula($nroIdentificacion);
+    ManejoCliente::cambiarEstadoActivado($nroIdentificacion);
 
 
 }
 
 echo '<script>
-alert("Se elimino el usuario con cedula '.$nroIdentificacion.'");
+alert("Se activo el cliente con ID: '.$nroIdentificacion.'");
 window.location="../Admin.php?menu=cliente";        
 
 </script>';
-
-

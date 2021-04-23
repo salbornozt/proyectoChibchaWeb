@@ -95,6 +95,34 @@ class ManejoCliente
         return $cliente;
     }
 
+     /**
+         * Delete an distribuidor
+         * @param Cliente cliente to modify
+         * @return void
+         */
+        public static function cambiarEstadoActivado($cliente){
+            $clienteDAO=ClienteDAO::getClienteDAO(self::$conexionBD);
+            $clienteDAO->cambiarEstadoActivado($cliente);
+        }
+
+    
+        public static function getListActivar()
+        {
+            $clienteDAO = ClienteDAO::getClienteDAO(self::$conexionBD);
+            $cliente = $clienteDAO->getListActivar();
+            return $cliente;
+           
+        }
+
+        
+        public static function getListDesactivar()
+        {
+            $distribuidorDAO = DistribuidorDAO::getClienteDAO(self::$conexionBD);
+            $distribuidor = $clienteDAO->getListDesactivar();
+            return $cliente;
+           
+        }
+
     /**
      * Change the conexion
      */
