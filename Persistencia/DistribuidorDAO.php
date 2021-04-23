@@ -61,6 +61,7 @@ class DistribuidorDAO implements DAO
         $Distribuidor->setnom_distribuidor($row[1]);
         $Distribuidor->setCorreo_distribuidor($row[2]);
         $Distribuidor->setCod_categoria_distribuidor($row[3]);
+        $Distribuidor->setEstado_distribuidor($row[4]);
 
         return $Distribuidor;
     }
@@ -232,9 +233,9 @@ class DistribuidorDAO implements DAO
 
     public function creaDistribuidorxAdmin($distribuidor)
     {
-        $sql = "insert into DISTRIBUIDOR 
+        $sql = "insert into DISTRIBUIDOR (nom_distribuidor, correo_distribuidor, cod_categoria_distribuidor,cod_estado)
         values (
-        " . $distribuidor->getCod_distribuidor() . ",
+        
         '" . $distribuidor->getNom_distribuidor() . "',
         '" . $distribuidor->getCorreo_distribuidor() . "',
         " . $distribuidor->getCod_categoria_distribuidor() . ",

@@ -10,6 +10,7 @@ ManejoDistribuidor::setConexionBD($conexion);
 
 if (isset($_POST['addAgregarDistribuidor']) == true) {
 
+    
     $nombreCompleto = isset($_POST['nombre']) ? $_POST['nombre'] : null;
     $email = isset($_POST['correo']) ? $_POST['correo'] : null;
     $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : null;
@@ -19,6 +20,7 @@ if (isset($_POST['addAgregarDistribuidor']) == true) {
     $distribuidor = new Distribuidor();
 
     /*$distribuidor->setCod_distribuidor(10);*/
+
     $distribuidor->setNom_distribuidor($nombreCompleto);
     $distribuidor->setCorreo_distribuidor($email);
     if(strcmp($categoria, $var3) === 0){      
@@ -30,8 +32,8 @@ if (isset($_POST['addAgregarDistribuidor']) == true) {
        
     ManejoDistribuidor::creaDistribuidorxAdmin($distribuidor);
 }
-echo '<script>
+/*echo '<script>
     alert("Se creo el distribuidor '.$nombreCompleto.'");
     window.location="../Admin.php?menu=distribuidor";        
     
-    </script>';
+    </script>';*/
