@@ -44,6 +44,14 @@ class Distribuidor{
      * @return int
      */ 
     private $cod_categoria_distribuidor;
+
+    /**
+     * distributor estado code
+     *
+     * @return int
+     */ 
+    private $cod_estado;
+     
      
 
 
@@ -144,6 +152,26 @@ class Distribuidor{
     public function setCod_categoria_distribuidor($cod_categoria_distribuidor)
     {
         $this->cod_categoria_distribuidor = $cod_categoria_distribuidor;
+
+        return $this;
+    }
+    
+    /**
+     * Get the value of cod_categoria_distribuidor
+     */ 
+    public function getEstado_distribuidor()
+    {
+        return $this->cod_estado;
+    }
+
+    /**
+     * Set the value of cod_categoria_distribuidor
+     *
+     * @return  self
+     */ 
+    public function setEstado_distribuidor($cod_estado)
+    {
+        $this->cod_estado = $cod_estado;
 
         return $this;
     }

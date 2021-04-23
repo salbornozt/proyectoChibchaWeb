@@ -143,7 +143,7 @@ class DistribuidorDAO implements DAO
     public function getList()
     {
 
-        $sql = "SELECT cod_distribuidor, nom_distribuidor, correo_distribuidor, nom_categoria
+        $sql = "SELECT cod_distribuidor, nom_distribuidor, correo_distribuidor, nom_categoria,cod_estado
         FROM distribuidor, categoria_distribuidor
         WHERE distribuidor.cod_categoria_distribuidor = categoria_distribuidor.cod_categoria_distribuidor
         ORDER BY nom_distribuidor";
@@ -155,6 +155,7 @@ class DistribuidorDAO implements DAO
             $item->setNom_distribuidor($row[1]);
             $item->setCorreo_distribuidor($row[2]);
             $item->setNom_categoria_distribuidor($row[3]);
+            $item->setEstado_distribuidor($row[4]);
             array_push($list, $item);
 
         }
@@ -194,5 +195,38 @@ class DistribuidorDAO implements DAO
         }
 
         return self::$DistribuidorDAO;
+    }
+
+    /**
+     * Method to delete a new Distribuidor
+     *
+     * @param Distribuidor $Distribuidor
+     * @return void
+     * 2 INACTIVO
+     * 1 ACTIVO
+     */
+
+    public function cambiarEstadoDesactivado($cod_distribuidor)
+  
+    {
+        $sql = "UPDATE  DISTRIBUIDOR SET COD_ESTADO=2 WHERE cod_distribuidor = " . $cod_distribuidor;
+
+        pg_query($this->conexion, $sql);
+    }
+    /**
+     * Method to delete a new Distribuidor
+     *
+     * @param Distribuidor $Distribuidor
+     * @return void
+     * 2 INACTIVO
+     * 1 ACTIVO
+     */
+
+    public function cambiarEstadoActivado($cod_distribuidor)
+  
+    {
+        $sql = "UPDATE  DISTRIBUIDOR SET COD_ESTADO=1 WHERE cod_distribuidor = " . $cod_distribuidor;
+
+        pg_query($this->conexion, $sql);
     }
 }

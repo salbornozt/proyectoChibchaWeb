@@ -73,6 +73,26 @@
             return $distribuidor;
         }
 
+         /**
+         * Delete an distribuidor
+         * @param Distribuidor distribuidor to modify
+         * @return void
+         */
+        public static function cambiarEstadoDesactivado($distribuidor){
+            $distribuidorDAO=DistribuidorDAO::getDistribuidorDAO(self::$conexionBD);
+            $distribuidorDAO->cambiarEstadoDesactivado($distribuidor);
+        }
+
+         /**
+         * Delete an distribuidor
+         * @param Distribuidor distribuidor to modify
+         * @return void
+         */
+        public static function cambiarEstadoActivado($distribuidor){
+            $distribuidorDAO=DistribuidorDAO::getDistribuidorDAO(self::$conexionBD);
+            $distribuidorDAO->cambiarEstadoActivado($distribuidor);
+        }
+
 	    /**
 	    * Change the conexion
 	    */
