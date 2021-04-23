@@ -65,7 +65,10 @@
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#about">Nosotros</a></li>
           <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
+          <li><a class="nav-link scrollto" href="#pricing">Precios</a></li>
+
           <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+          
        
           
         </ul>
@@ -233,7 +236,158 @@
    
 
     
+<!-- ======= Pricing Section ======= -->
+    
+<section id="pricing" class="pricing">
+      <div class="container" data-aos="fade-up">
 
+        <div class="section-title">
+          <h2>Precios</h2>
+          <p></p>
+        </div>
+        <div class="section-title">
+          <h3>Mensuales</h3>
+        </div>
+        <div class="row">
+
+          
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box featured">
+              <h3>Platino</h3>
+              <h4><sup>COP</sup>25 000<span> / mes</span></h4>
+              <ul>
+                <li>10 Sitios web</li>
+                <li>10 GB de Almacenamiento</li>
+                <li>10 correos Institucionales</li>
+                <li>Base de Datos MySQL</li>
+                <li>Certificado ISO</li>
+                <li>Certificado SSL</li>
+
+              </ul>
+              <div class="btn-wrap">
+                <a href="login.php" class="btn-buy">Seleccionar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box featured">
+              <h3>Plata</h3>
+              <h4><sup>COP</sup>60 000<span> / mes</span></h4>
+              <ul>
+                <li>50 Sitios web</li>
+                <li>30 GB de Almacenamiento</li>
+                <li>50 correos Institucionales</li>
+                <li>Base de Datos MySQL</li>
+                <li>Certificado ISO</li>
+                <li>Certificado SSL</li>
+
+              </ul>
+              <div class="btn-wrap">
+                <a href="login.php" class="btn-buy">Seleccionar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box featured">
+              <h3>Oro</h3>
+              <h4><sup>COP</sup>85 000<span> / mes</span></h4>
+              <ul>
+                <li>Sitios web Ilimitados</li>
+                <li>80 GB de Almacenamiento</li>
+                <li>200 correos Institucionales</li>
+                <li>Bases de Datos Ilimitadas</li>
+                <li>Certificado ISO</li>
+                <li>Certificado SSL</li>
+
+              </ul>
+              <div class="btn-wrap">
+                <a href="login.php" class="btn-buy">Seleccionar</a>
+              </div>
+            </div>
+          </div>
+
+          
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="section-title" data-aos="fade-up">
+          <h3>Anual</h3>
+        </div>
+
+        
+        <div class="row">
+
+          
+
+        <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box featured">
+              <h3>Platino</h3>
+              <h4><sup>COP</sup>220 000<span> / año</span></h4>
+              <ul>
+                <li>10 Sitios web</li>
+                <li>10 GB de Almacenamiento</li>
+                <li>10 correos Institucionales</li>
+                <li>Base de Datos MySQL</li>
+                <li>Certificado ISO</li>
+                <li>Certificado SSL</li>
+
+              </ul>
+              <div class="btn-wrap">
+                <a href="login.php" class="btn-buy">Seleccionar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box featured">
+              <h3>Plata</h3>
+              <h4><sup>COP</sup>650 000<span> / año</span></h4>
+              <ul>
+                <li>50 Sitios web</li>
+                <li>30 GB de Almacenamiento</li>
+                <li>50 correos Institucionales</li>
+                <li>Base de Datos MySQL</li>
+                <li>Certificado ISO</li>
+                <li>Certificado SSL</li>
+
+              </ul>
+              <div class="btn-wrap">
+                <a href="login.php" class="btn-buy">Seleccionar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="box featured">
+              <h3>Oro</h3>
+              <h4><sup>COP</sup>900 000<span> / año</span></h4>
+              <ul>
+                <li>Sitios web Ilimitados</li>
+                <li>80 GB de Almacenamiento</li>
+                <li>200 correos Institucionales</li>
+                <li>Bases de Datos Ilimitadas</li>
+                <li>Certificado ISO</li>
+                <li>Certificado SSL</li>
+
+              </ul>
+              <div class="btn-wrap">
+                <a href="login.php" class="btn-buy">Seleccionar</a>
+              </div>
+            </div>
+          </div>
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
 
     
 

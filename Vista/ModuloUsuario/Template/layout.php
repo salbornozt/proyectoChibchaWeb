@@ -1,7 +1,14 @@
 <?php
 
-?>
+session_start();
 
+if($_SESSION['cod_cliente']==null)
+{
+    header("Location: index.php");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
