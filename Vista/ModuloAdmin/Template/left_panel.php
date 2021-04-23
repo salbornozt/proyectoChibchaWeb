@@ -6,7 +6,7 @@
                             <!--INICIO -->
                             <div class="sb-sidenav-menu-heading"></div>
                             <a class="nav-link" href="?menu=bienvenido">
-                                <div class="sb-nav-link-icon"><i class="fas fa-house-user"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Inicio
                             </a>
                              <!--OPCIÓN MODULOS -->
@@ -24,13 +24,6 @@
                                     <a class="nav-link" href="?menu=distribuidor">Distribuidor</a>
                                 </nav>
                             </div>
-                            <!--OPCION DISTRIBUIDORES COMISION-->
-                            <div class="sb-sidenav-menu-heading">Comisión distribuidores</div>
-                            <a class="nav-link" href="?menu=calcularDistribuidor">
-                              <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
-                                Calcular Comisión
-                                
-                            </a>
                            
                             <!--OPCIÓN GRAFICOS -->
                             <div class="sb-sidenav-menu-heading">Reporte</div>

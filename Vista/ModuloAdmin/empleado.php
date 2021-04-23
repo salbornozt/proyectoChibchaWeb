@@ -70,7 +70,40 @@ $empleado = ManejoEmpleado::getList();
                             <!--FIN MODAL AGREGAR EMPLEADO-->
                             <p>.                 .</p>
 
+                             <!--MODAL ELIMINAR EMPLEADO-->
+                            <div class="modal fade" id="info2">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Que empleado desea eliminar?</h5>
+                            </div>
+                            <div class="modal-body"> 
+                            <center>
+                            <form method="post" action="ModuloAdmin/eliminarEmpleado.php">
+                            <table>
+                            <tr><th>  <p> Cédula: <select name="cedula_op">
+                                           
+                                           <?php 
+                                           foreach($empleado as $e){
+                                            echo'
+                                               <option>'.$e->getCedula_empleado().'</option>';
+                                           }?>
+                                           
+                           </select> </p> </th></tr>
+                            </table>
                             
+                            </center><br>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger"  name='addEliminarEmpleado'>Eliminar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div></div></div></div>
+                            <center>
+                            </form>
+
+                            <span class="btn btn-danger" data-toggle="modal" data-target="#info2">Eliminar empleado</span>
+                            </center>
+                            <!--FIN MODAL ELIMINAR EMPLEADO-->
                         </ol>
                          <!-- FIN PANEL BOTONES -->
 

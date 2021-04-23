@@ -15,9 +15,6 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == 'distribuidor') {
         include_once("../Vista/ModuloAdmin/distribuidor.php");
     }
-    if ($_GET['menu'] == 'calcularDistribuidor') {
-        include_once("../Vista/ModuloAdmin/calcularDistribuidor.php");
-    }
 } else {
     include_once("../Vista/ModuloAdmin/index.php");
 }

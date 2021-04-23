@@ -178,7 +178,7 @@ $cliente3 = ManejoCliente::getListDesactivar();
                                         <?php 
 
                                         foreach($cliente as $c){
-                                           
+                                            $estado1='Activo';
                                             $peticion=$c->getCod_peticion();
                                             if($peticion==1){
                                                 $estado1='Activo';
