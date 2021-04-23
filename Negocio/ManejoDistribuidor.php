@@ -93,6 +93,17 @@
             $distribuidorDAO->cambiarEstadoActivado($distribuidor);
         }
 
+         /**
+        * Create an administrador
+        * @param Empleado administrador to create
+        * @return void
+        */
+        public static function creaDistribuidorxAdmin($distribuidor)
+        {
+            $distribuidorDAO = DistribuidorDAO::getDistribuidorDAO(self::$conexionBD);
+            $distribuidorDAO->creaDistribuidorxAdmin($distribuidor);
+        }
+
 	    /**
 	    * Change the conexion
 	    */

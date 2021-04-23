@@ -229,4 +229,18 @@ class DistribuidorDAO implements DAO
 
         pg_query($this->conexion, $sql);
     }
+
+    public function creaDistribuidorxAdmin($distribuidor)
+    {
+        $sql = "insert into DISTRIBUIDOR 
+        values (
+        " . $distribuidor->getCod_distribuidor() . ",
+        '" . $distribuidor->getNom_distribuidor() . "',
+        '" . $distribuidor->getCorreo_distribuidor() . "',
+        " . $distribuidor->getCod_categoria_distribuidor() . ",
+        " . $distribuidor->getEstado_distribuidor() . "
+    );";
+
+        pg_query($this->conexion, $sql);
+    }
 }
