@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <header id="header" class="fixed-top d-flex align-items-center ">
 
   <div class="container d-flex align-items-center justify-content-between">
