@@ -285,10 +285,38 @@ class ClienteDAO implements DAO
 
     }
 
+    public function getListDesactivar()
+    {
+
+        $sql = "SELECT cedula_cliente
+        FROM cliente
+        WHERE cliente.cod_peticion = 1
+        ";
+        $list = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $item = new Cliente();
+            $item->setCedula_cliente($row[0]);
+           
+            array_push($list, $item);
+
+        }
+        return $list;
+
+    }
+
     public function cambiarEstadoActivado($cedula_cliente)
   
     {
         $sql = "UPDATE  CLIENTE SET COD_PETICION=1 WHERE cedula_cliente = " . $cedula_cliente;
+
+        pg_query($this->conexion, $sql);
+    }
+
+    public function cambiarEstadoDesactivado($cedula_cliente)
+  
+    {
+        $sql = "UPDATE  CLIENTE SET COD_PETICION=2 WHERE cedula_cliente = " . $cedula_cliente;
 
         pg_query($this->conexion, $sql);
     }

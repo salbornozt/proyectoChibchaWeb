@@ -10,6 +10,7 @@ ManejoCliente::setConexionBD($conexion);
 
 $cliente = ManejoCliente::getList();
 $cliente2 = ManejoCliente::getListActivar();
+$cliente3 = ManejoCliente::getListDesactivar();
 
 ?>
 
@@ -79,7 +80,7 @@ $cliente2 = ManejoCliente::getListActivar();
                             <center>
                             <form method="post" action="ModuloAdmin/activarCliente.php">
                             <table>
-                                    <tr><th>  <p> Cedula: <select name="cedula">
+                                    <tr><th>  <p> Cédula: <select name="cedula">
                                            
                                                     <?php 
                                                     foreach($cliente2 as $c){
@@ -101,6 +102,40 @@ $cliente2 = ManejoCliente::getListActivar();
                             <span class="btn btn-success" data-toggle="modal" data-target="#info3">Activar cliente</span>
                             </center>
                             <!--FIN MODAL HABILITAR CLIENTE-->
+                            <p>.                 .</p>
+                            <!--MODAL DESHABILITAR CLIENTE-->
+                            <div class="modal fade" id="info2">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Que cliente desea desactivar?</h5>
+                            </div>
+                            <div class="modal-body"> 
+                            <center>
+                            <form method="post" action="ModuloAdmin/desactivarcliente.php">
+                            <table>
+                                    <tr><th>  <p> Cédula: <select name="cedula">
+                                           
+                                                    <?php 
+                                                    foreach($cliente3 as $c){
+                                                     echo'
+                                                        <option>'.$c->getCedula_cliente().'</option>';
+                                                    }?>
+                                                    
+                                    </select> </p> </th></tr>
+                            </table>
+                            </center><br>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger"  name='desactivarCliente'>Desactivar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div></div></div></div>
+                            <center>
+                            </form>
+
+                            <span class="btn btn-danger" data-toggle="modal" data-target="#info2">Desactivar cliente</span>
+                            </center>
+                            <!--FIN MODAL DESHABILITAR CLIENTE-->
                         </ol>
                          <!-- FIN PANEL BOTONES -->
 

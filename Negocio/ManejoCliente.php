@@ -105,6 +105,11 @@ class ManejoCliente
             $clienteDAO->cambiarEstadoActivado($cliente);
         }
 
+        public static function cambiarEstadoDesactivado($cliente){
+            $clienteDAO=ClienteDAO::getClienteDAO(self::$conexionBD);
+            $clienteDAO->cambiarEstadoDesactivado($cliente);
+        }
+
     
         public static function getListActivar()
         {
@@ -117,8 +122,8 @@ class ManejoCliente
         
         public static function getListDesactivar()
         {
-            $distribuidorDAO = DistribuidorDAO::getClienteDAO(self::$conexionBD);
-            $distribuidor = $clienteDAO->getListDesactivar();
+            $clienteDAO = ClienteDAO::getClienteDAO(self::$conexionBD);
+            $cliente = $clienteDAO->getListDesactivar();
             return $cliente;
            
         }
