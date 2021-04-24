@@ -18,6 +18,9 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == 'calcularDistribuidor') {
         include_once("../Vista/ModuloAdmin/calcularDistribuidor.php");
     }
+    if ($_GET['menu'] == 'perfil') {
+        include_once("../Vista/ModuloAdmin/perfil.php");
+    }
 } else {
     include_once("../Vista/ModuloAdmin/index.php");
 }
