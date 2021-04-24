@@ -15,7 +15,7 @@ if($_GET["value"]==1){
     $estado = ManejoTicket::modificarEstadoTicket($cod_ticket);
     echo '<script>
         alert("revisado");
-        window.location="../Vista/Empleado.php?menu=verTickets";          
+        window.location="../Empleado.php?menu=verTickets";          
     </script>';  
     
 }
@@ -27,7 +27,7 @@ elseif($_GET["value"]==0){
         
         echo '<script>
         alert("Se asigno a otro usuario");
-        window.location="../Vista/Empleado.php?menu=verTickets";          
+        window.location="../Empleado.php?menu=verTickets";          
         </script>';  
         //header("Location: ../Vista/Empleado.php?menu=verTickets.php");     
     
@@ -36,7 +36,7 @@ elseif($_GET["value"]==0){
         
         echo '<script>
         alert("Imposible darlo a otro empleado, debe solucionarlo");
-        window.location="../Vista/Empleado.php?menu=verTickets";  
+        window.location="../Empleado.php?menu=verTickets";  
         
         </script>';
         //header("Location: ");
