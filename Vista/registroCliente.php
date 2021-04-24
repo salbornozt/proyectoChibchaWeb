@@ -48,7 +48,7 @@ if (isset($_POST['addRegistroCliente']) == true) {
 	$usuario->setCedula_cliente($nroIdentificacion);
 	$usuario->setCorreo_cliente($email);
 	$usuario->setContraseña_cliente($confirmarpass);
-	$usuario->setCod_peticion(1);
+	$usuario->setCod_peticion(2);
 	$usuario->setCod_usuario(3);
 	ManejoCliente::createCliente($usuario);
 }

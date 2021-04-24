@@ -95,10 +95,13 @@ class ManejoTicket
     }
 
 
-    public static function modificarEstadoTicket($ticket)
+    public static function modificarEstadoTicket($ticket, $cod_empleado, $cantidad)
     {
         $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
         $TicketDAO->modificarEstado($ticket);
+        if ($cantidad > 0) {
+            $TicketDAO->restarTicket($cod_empleado);
+        }
     }
 
     public static function pasarSiguienteNivel($ticket, $nivel, $cod_empleado, $cantidad)

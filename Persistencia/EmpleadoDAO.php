@@ -72,7 +72,7 @@ class EmpleadoDAO implements DAO
     public function verificarCuenta($correo, $pass)
     {
 
-        $sql =  "SELECT * from empleado WHERE correo_empleado = '" . $correo . "' and contraseña_empleado = '" . $pass . "'";
+        $sql =  "SELECT * from empleado WHERE correo_empleado = '" . $correo . "' and contraseña_empleado = '" . $pass . "' and cod_peticion=1";
 
         if (!$resultado = pg_query($this->conexion, $sql)) die();
         $row = pg_fetch_array($resultado);
@@ -147,6 +147,30 @@ class EmpleadoDAO implements DAO
      * @return void
      */
 
+    public function createEmpleadoXLogin($empleado)
+    {
+        $sql = "insert into EMPLEADO(nom_empleado,cedula_empleado,cargo_empleado,contraseña_empleado,correo_empleado,cantidad_de_tickets,nivel_empleado,cod_peticion,cod_usuario) 
+                                     values ('" . $empleado->getNom_empleado() . "',
+                                            " . $empleado->getCedula_empleado() . ",
+                                            '" . $empleado->getCargo_empleado() . "',
+                                            '" . $empleado->getContraseña_empleado() . "',
+                                            '" . $empleado->getCorreo_empleado() . "',
+                                            " . $empleado->getCantidad_tickets() . ",
+                                            " . $empleado->getNivel_empleado() . ",
+                                            " . $empleado->getCod_peticion() . ",
+                                            " . $empleado->getCod_usuario() . "
+                                        );";
+
+        pg_query($this->conexion, $sql);
+    }
+
+    /**
+     * Method to create a new employeer
+     *
+     * @param Empleado $empleado
+     * @return void
+     */
+
     public function createEmpleadoxAdmin($empleado)
     {
         $sql = "insert into EMPLEADO(nom_empleado,cedula_empleado,cargo_empleado,contraseña_empleado,correo_empleado,cantidad_de_tickets,nivel_empleado,cod_peticion,cod_usuario) 
@@ -188,7 +212,7 @@ class EmpleadoDAO implements DAO
         pg_query($this->conexion, $sql);
     }
 
-    public function modificarEmpleado($cod,$nom,$correo,$contraseña)
+    public function modificarEmpleado($cod, $nom, $correo, $contraseña)
     {
 
         $sql = "UPDATE EMPLEADO SET 
@@ -342,12 +366,10 @@ class EmpleadoDAO implements DAO
         while ($row = pg_fetch_array($resultado)) {
             $item = new Empleado();
             $item->setCedula_empleado($row[0]);
-           
-            array_push($list, $item);
 
+            array_push($list, $item);
         }
         return $list;
-
     }
 
     public function getListDesactivar()
@@ -362,16 +384,14 @@ class EmpleadoDAO implements DAO
         while ($row = pg_fetch_array($resultado)) {
             $item = new Empleado();
             $item->setCedula_empleado($row[0]);
-           
-            array_push($list, $item);
 
+            array_push($list, $item);
         }
         return $list;
-
     }
 
     public function cambiarEstadoActivado($cedula_empleado)
-  
+
     {
         $sql = "UPDATE  EMPLEADO SET COD_PETICION=1 WHERE cedula_empleado = " . $cedula_empleado;
 
@@ -379,7 +399,7 @@ class EmpleadoDAO implements DAO
     }
 
     public function cambiarEstadoDesactivado($cedula_empleado)
-  
+
     {
         $sql = "UPDATE  EMPLEADO SET COD_PETICION=2 WHERE cedula_empleado = " . $cedula_empleado;
 

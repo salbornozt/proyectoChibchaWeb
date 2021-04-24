@@ -50,7 +50,11 @@ if (isset($_POST['addRegistroEmpleado']) == true) {
 	$empleado->setCorreo_empleado($email);
 	$empleado->getCargo_empleado($cargo);
 	$empleado->setContraseña_empleado($confirmarpass);
-	ManejoEmpleado::crearEmpleado($empleado);
+	$empleado->setCantidad_tickets(0);
+	$empleado->setNivel_empleado(1);
+	$empleado->setCod_peticion(2);
+	$empleado->setCod_usuario(2);
+	ManejoEmpleado::createEmpleadoPorLogin($empleado);
 }
 echo '<script>
     alert("Ya estás creado la cuenta");

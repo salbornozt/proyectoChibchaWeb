@@ -68,7 +68,7 @@ class ClienteDAO implements DAO
     public function verificarCuenta($correo, $pass)
     {
 
-        $sql =  "SELECT * from cliente WHERE correo_cliente = '" . $correo . "' and contraseña_cliente = '" . $pass . "'";
+        $sql =  "SELECT * from cliente WHERE correo_cliente = '" . $correo . "' and contraseña_cliente = '" . $pass . "'and cod_peticion=1";
 
         if (!$resultado = pg_query($this->conexion, $sql)) die();
         $row = pg_fetch_array($resultado);
@@ -198,7 +198,7 @@ class ClienteDAO implements DAO
         pg_query($this->conexion, $sql);
     }
 
-    
+
     /**
      * Method to delete a new client
      *
@@ -259,7 +259,7 @@ class ClienteDAO implements DAO
         return self::$clienteDAO;
     }
 
-     /**
+    /**
      * Method to get an DistribuidorDAO object
      *
      * @param Object $conexion
@@ -277,12 +277,10 @@ class ClienteDAO implements DAO
         while ($row = pg_fetch_array($resultado)) {
             $item = new Cliente();
             $item->setCedula_cliente($row[0]);
-           
-            array_push($list, $item);
 
+            array_push($list, $item);
         }
         return $list;
-
     }
 
     public function getListDesactivar()
@@ -297,16 +295,14 @@ class ClienteDAO implements DAO
         while ($row = pg_fetch_array($resultado)) {
             $item = new Cliente();
             $item->setCedula_cliente($row[0]);
-           
-            array_push($list, $item);
 
+            array_push($list, $item);
         }
         return $list;
-
     }
 
     public function cambiarEstadoActivado($cedula_cliente)
-  
+
     {
         $sql = "UPDATE  CLIENTE SET COD_PETICION=1 WHERE cedula_cliente = " . $cedula_cliente;
 
@@ -314,7 +310,7 @@ class ClienteDAO implements DAO
     }
 
     public function cambiarEstadoDesactivado($cedula_cliente)
-  
+
     {
         $sql = "UPDATE  CLIENTE SET COD_PETICION=2 WHERE cedula_cliente = " . $cedula_cliente;
 

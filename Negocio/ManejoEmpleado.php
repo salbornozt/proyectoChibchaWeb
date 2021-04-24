@@ -29,13 +29,13 @@ class ManejoEmpleado
         return $empleado;
     }
 
-    public static function modificarEmpleado($cod,$nom,$correo,$contraseña)
+    public static function modificarEmpleado($cod, $nom, $correo, $contraseña)
     {
         $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
-        $empleadoDAO->modificarEmpleado($cod,$nom,$correo,$contraseña);
+        $empleadoDAO->modificarEmpleado($cod, $nom, $correo, $contraseña);
     }
 
-    
+
 
     public static function verificarCuentaEmpleado($correo, $pass)
     {
@@ -54,6 +54,17 @@ class ManejoEmpleado
     {
         $EmpleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
         $EmpleadoDAO->create($empleado);
+    }
+
+    /**
+     * Create an administrador
+     * @param Empleado administrador to create
+     * @return void
+     */
+    public static function createEmpleadoPorLogin($empleado)
+    {
+        $EmpleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $EmpleadoDAO->createEmpleadoXLogin($empleado);
     }
 
     /**
@@ -144,37 +155,37 @@ class ManejoEmpleado
     }
 
     /**
-         * Delete an distribuidor
-         * @param Cliente cliente to modify
-         * @return void
-         */
-        public static function cambiarEstadoActivado($empleado){
-            $empleadoDAO=EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
-            $empleadoDAO->cambiarEstadoActivado($empleado);
-        }
+     * Delete an distribuidor
+     * @param Cliente cliente to modify
+     * @return void
+     */
+    public static function cambiarEstadoActivado($empleado)
+    {
+        $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $empleadoDAO->cambiarEstadoActivado($empleado);
+    }
 
-        public static function cambiarEstadoDesactivado($empleado){
-            $empleadoDAO=EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
-            $empleadoDAO->cambiarEstadoDesactivado($empleado);
-        }
+    public static function cambiarEstadoDesactivado($empleado)
+    {
+        $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $empleadoDAO->cambiarEstadoDesactivado($empleado);
+    }
 
-    
-        public static function getListActivar()
-        {
-            $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
-            $empleado = $empleadoDAO->getListActivar();
-            return $empleado;
-           
-        }
 
-        
-        public static function getListDesactivar()
-        {
-            $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
-            $empleado = $empleadoDAO->getListDesactivar();
-            return $empleado;
-           
-        }
+    public static function getListActivar()
+    {
+        $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $empleado = $empleadoDAO->getListActivar();
+        return $empleado;
+    }
+
+
+    public static function getListDesactivar()
+    {
+        $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $empleado = $empleadoDAO->getListDesactivar();
+        return $empleado;
+    }
 
     /**
      * Change the conexion
