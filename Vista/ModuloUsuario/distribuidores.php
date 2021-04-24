@@ -9,11 +9,34 @@ if($_SESSION['cod_cliente']==null)
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Persistencia/Util/Conexion.php';
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Distribuidor.php';
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoDistribuidor.php';
+
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Dominio.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoDominio.php';
+
 $obj = new Conexion();
 $conexion = $obj->conectarDB();
 $_SESSION['dom']=$_POST['dom'];
+$dom = "{$_SESSION['dom']}";
+
 
 ManejoDistribuidor::setConexionBD($conexion);
+ManejoDominio::setConexionBD($conexion);
+
+
+$dominio = ManejoDominio::consultarDominioPorUrl($dom);
+echo $dominio->getCod_dominio();
+if(is_null($dominio->getCod_dominio())){
+  if (gethostbyname($dom) != $dom ) {
+    echo "<script type='text/javascript'>alert('Dominio ya registrado');
+  history.go(-1);
+  </script>";
+  }
+}else{
+  echo "<script type='text/javascript'>alert('Dominio ya registrado');
+  history.go(-1);
+  </script>";
+}
+
 //$lista = ManejoDistribuidor::consultarTicketCodigoEmpleado(1);
 $lista = ManejoDistribuidor::getList();
 //$prueba1 = ManejoDistribuidor::consultarTicket(2);
@@ -137,7 +160,7 @@ $lista = ManejoDistribuidor::getList();
            '. $t->getCorreo_distribuidor() .'
          </p>
          <div class="read-more">
-           <a href="#">Seleccionar</a>
+           <a href="registroDominio.php?distri='.$t->getCod_distribuidor().'">Seleccionar</a>
          </div>
        </div>
      </article>';

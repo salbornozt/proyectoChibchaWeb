@@ -69,6 +69,33 @@ class DominioDAO implements DAO
     }
 
     /**
+     * Method to query an user by his code type
+     *
+     * @param int $cod_dominio
+     * @return Dominio
+     */
+    public function consultarDominioPorUrl($url)
+    {
+
+        $sql = "SELECT * FROM DOMINIO WHERE DOMINIO.url = '$url'";
+
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        $row = pg_fetch_array($resultado);
+
+        $dominio = new Dominio();
+
+        $dominio->setCod_dominio($row[0]);
+        $dominio->setCod_sitio_web($row[1]);
+        $dominio->setCod_paquete($row[2]);
+        $dominio->setCod_planPago($row[3]);
+        $dominio->setUrl($row[4]);
+        $dominio->setFecha_creacion($row[5]);
+        $dominio->setCod_distribuidor($row[6]);
+
+        return $dominio;
+    }
+
+    /**
      * Method to create a new dominio
      *
      * @param Dominio $dominio

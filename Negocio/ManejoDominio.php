@@ -26,6 +26,13 @@
             return $dominio;
         }
 
+        public static function consultarDominioPorUrl($url){
+
+            $dominioDAO = DominioDAO::getDominioDAO(self::$conexionBD);
+            $dominio = $dominioDAO->consultarDominioPorUrl($url);
+            return $dominio;
+        }
+
         public static function modificarPlanDominio($dominio,$planPago){
 
             $dominioDAO = DominioDAO::getDominioDAO(self::$conexionBD);
