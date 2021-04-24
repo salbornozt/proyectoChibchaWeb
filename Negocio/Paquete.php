@@ -52,7 +52,7 @@ class Paquete{
      */ 
     public function getCod_paquete()
     {
-        return $this->getCod_paquete;
+        return $this->cod_paquete;
     }
 
     /**

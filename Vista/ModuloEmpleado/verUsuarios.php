@@ -41,10 +41,10 @@ $paquete = ManejoPaquete::getList();
                 </div>
                 <div class="modal-body"> 
                 <center>
-                <form method="post" action="modificarUxD.php">
+                <form method="post" action="ModuloEmpleado/modificarUxD.php?">
                 <table>
                 <tr>
-
+            
                 <th>  <p>Cod Dominio:</p></th><th> <select name="dominio">
                                            
                     <?php
