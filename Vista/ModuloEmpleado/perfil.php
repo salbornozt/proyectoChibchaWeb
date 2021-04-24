@@ -95,19 +95,19 @@ $empleado = ManejoEmpleado::consultarEmpleado($_SESSION['cod_empleado']);
                 <tr>
                 <th> 
                 <p>Nombre y Apellidos:</p></th><th> 
-                <input type="text" value="<?php echo $empleado->getNom_empleado()?>" name="nombre">
+                <input type="text" class="form-control" value="<?php echo $empleado->getNom_empleado()?>" name="nombre">
                 </th> 
                 </tr>
                 <tr>
                 <th>
                 <p>Cédula:</p></th><th> 
-                <input type="text" value="<?php echo $empleado->getCedula_empleado()?>" name="cedula" readonly>
+                <input type="text" class="form-control" value="<?php echo $empleado->getCedula_empleado()?>" name="cedula" readonly>
                 <th>  
                 </tr>
                 <tr>
                 <th>
                 <p>Correo:</p></th><th> 
-                <input type="text" value="<?php echo $empleado->getCorreo_empleado()?>" name="correo">
+                <input type="text" class="form-control" value="<?php echo $empleado->getCorreo_empleado()?>" name="correo">
                 <th>  
                 </tr>
                 
@@ -115,7 +115,7 @@ $empleado = ManejoEmpleado::consultarEmpleado($_SESSION['cod_empleado']);
                 <th>
                 
                 <p>Contraseña: </p> </th><th> 
-                <input type="text" value="<?php echo $empleado->getContraseña_empleado()?>" name="contraseña">
+                <input type="text" class="form-control" value="<?php echo $empleado->getContraseña_empleado()?>" name="contraseña">
                  </th>                                   
                             </tr>
                             </table>

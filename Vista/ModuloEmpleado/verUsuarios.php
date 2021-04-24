@@ -26,165 +26,163 @@ $paquete = ManejoPaquete::getList();
 
 ?>
 <div class="container-fluid">
-<br>
+    <br>
 
-<div class="container-fluid">
-    <h1 class="mt-4">Usuarios Con Dominios</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Usuario x Dominio </li>
-        <!--MODAL ELIMINAR CLIENTE-->
-        <div class="modal fade" id="info2">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Seleccione el plan a modificar</h5>
-                </div>
-                <div class="modal-body"> 
-                <center>
-                <form method="post" action="ModuloEmpleado/modificarUxD.php?">
-                <table>
-                <tr>
-            
-                <th>  <p>Cod Dominio:</p></th><th> <select name="dominio">
-                                           
-                    <?php
+    <div class="container-fluid">
+        <h1 class="mt-4">Usuarios Con Dominios</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Usuario x Dominio </li>
+            <!--MODAL ELIMINAR CLIENTE-->
+            <div class="modal fade" id="info2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Seleccione el plan a modificar</h5>
+                        </div>
+                        <div class="modal-body">
+                            <center>
+                                <form method="post" action="ModuloEmpleado/modificarUxD.php?">
+                                    <table>
+                                        <tr>
 
-                    foreach($lista as $p){
+                                            <th>
+                                                <p>Cod Dominio:</p>
+                                            </th>
+                                            <th> <select name="dominio" class="form-control">
 
-                     echo 
-                    '<option>'.$p->getCod_dominio().'</option>'
-                    ;
+                                                    <?php
 
-                     }
-        
-                     ?>                                                   
-                            </select>  </th> </tr>
-                            <tr>
-                <th>
-                <?php if((int)$_SESSION['nivel_empleado']>2){
-                    echo '<p>Paquete:</p></th><th> <select name="paquete">'; 
-                    foreach($paquete as $p){
+                                                    foreach ($lista as $p) {
 
-                     echo 
-                    '<option>'.$p->getNom_paquete().'</option>'
-                    ;
+                                                        echo
+                                                        '<option>' . $p->getCod_dominio() . '</option>';
+                                                    }
 
-                     }
-        
-                     ?>                                                   
-                            </select>  </th> <?php
-                    }
-                    ?>
-                <th>  
-                </tr>
-                <tr>
-                <th>
-                <?php if((int)$_SESSION['nivel_empleado']>1){
-                    echo '<p>Distribuidor:</p></th><th> <select name="distribuidor">'; 
-                    foreach($dist as $p){
+                                                    ?>
+                                                </select> </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php if ((int)$_SESSION['nivel_empleado'] > 2) {
+                                                    echo '<p>Paquete:</p></th><th> <select name="paquete" class="form-control">';
+                                                    foreach ($paquete as $p) {
 
-                     echo 
-                    '<option>'.$p->getNom_distribuidor().'</option>'
-                    ;
+                                                        echo
+                                                        '<option>' . $p->getNom_paquete() . '</option>';
+                                                    }
 
-                     }
-        
-                     ?>                                                   
-                            </select>  </th> <?php
-                    }
-                    ?>
-                <th>  
-                </tr>
-                
-                <tr>
-                <th>
-                
-                <p>Plan Pago: </p> </th><th><select name="planpago">
-                                           
-                    <?php
+                                                ?>
+                                                    </select> </th> <?php
+                                                                }
+                                                                    ?>
+                                        <th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php if ((int)$_SESSION['nivel_empleado'] > 1) {
+                                                    echo '<p>Distribuidor:</p></th><th> <select name="distribuidor" class="form-control">';
+                                                    foreach ($dist as $p) {
 
-                    foreach($planesPago as $p){
+                                                        echo
+                                                        '<option>' . $p->getNom_distribuidor() . '</option>';
+                                                    }
 
-                     echo 
-                    '<option>'.$p->getNom_planPago().'</option>'
-                    ;
+                                                ?>
+                                                    </select> </th> <?php
+                                                                }
+                                                                    ?>
+                                        <th>
+                                        </tr>
 
-                     }
-        
-                     ?>                                                   
-                            </select>  </th>                                   
-                            </tr>
-                            </table>
+                                        <tr>
+                                            <th>
+
+                                                <p>Plan Pago: </p>
+                                            </th>
+                                            <th><select name="planpago" class="form-control">
+
+                                                    <?php
+
+                                                    foreach ($planesPago as $p) {
+
+                                                        echo
+                                                        '<option>' . $p->getNom_planPago() . '</option>';
+                                                    }
+
+                                                    ?>
+                                                </select> </th>
+                                        </tr>
+                                    </table>
                             </center><br>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-success"  name='modificar'>Modificar</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-success" name='modificar'>Modificar</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                             </div>
-                            </div></div></div></div>
-                            <center>
-                            </form>
-                            </center>
-                            <!--FIN MODAL ELIMINAR CLIENTE-->
-    </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form>
+            </form>
+            </center>
+            <!--FIN MODAL ELIMINAR CLIENTE-->
+        </ol>
     </div>
-<div class="card mb-4">
+    <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
             DataTable Example
         </div>
         <div class="card-body">
             <div class="table-responsive">
-            <section id="tablas" class="tablas">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Cod Dominio</th>
-                            <th>Nombre Cliente</th>
-                            <th>URL / Dominio</th>
-                            <th>Nombre Paquete</th>
-                            <th>Nombre Distribuidor</th>
-                            <th>Nombre Plan de Pago</th>
-                            <th>CHECK</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Cod Dominio</th>
-                            <th>Nombre Cliente</th>
-                            <th>URL / Dominio</th>
-                            <th>Nombre Paquete</th>
-                            <th>Nombre Distribuidor</th>
-                            <th>Nombre Plan de Pago</th>
-                            <th>CHECK</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                    <?php
-   
-   
-    foreach ($lista as $t) {
-    
-        echo '  <tr>
-                    <td align="center">'.$t->getCod_dominio().'</td>
-                    <td align="center">'.$t->getNom_cliente().'</td>
-                    <td align="center">'.$t->getUrl().'</td>
-                    <td align="center">'.$t->getNom_paquete().'</td>
-                    <td align="center">'.$t->getNom_distribuidor().'</td>                    
-                    <td align="center">'.$t->getNom_planpago().'</td>  
+                <section id="tablas" class="tablas">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Cod Dominio</th>
+                                <th>Nombre Cliente</th>
+                                <th>URL / Dominio</th>
+                                <th>Nombre Paquete</th>
+                                <th>Nombre Distribuidor</th>
+                                <th>Nombre Plan de Pago</th>
+                                <th>CHECK</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Cod Dominio</th>
+                                <th>Nombre Cliente</th>
+                                <th>URL / Dominio</th>
+                                <th>Nombre Paquete</th>
+                                <th>Nombre Distribuidor</th>
+                                <th>Nombre Plan de Pago</th>
+                                <th>CHECK</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <?php
+
+
+                            foreach ($lista as $t) {
+
+                                echo '  <tr>
+                    <td align="center">' . $t->getCod_dominio() . '</td>
+                    <td align="center">' . $t->getNom_cliente() . '</td>
+                    <td align="center">' . $t->getUrl() . '</td>
+                    <td align="center">' . $t->getNom_paquete() . '</td>
+                    <td align="center">' . $t->getNom_distribuidor() . '</td>                    
+                    <td align="center">' . $t->getNom_planpago() . '</td>  
                     <td align="center"><span class="btn btn-danger" data-toggle="modal" data-target="#info2">Modificar</span></td>                                      
                                
-                </tr>'
-        ;
-    }
-    ?>
-                        
-                        
-                    </tbody>
-                </table>
+                </tr>';
+                            }
+                            ?>
+
+
+                        </tbody>
+                    </table>
                 </section>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
-
-

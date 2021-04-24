@@ -84,15 +84,15 @@ $administrador = ManejoAdministrador::consultarAdministrador($cod);
                             <table>
                                     <tr>
                                     <th>  <p> Nombre:</p> </th>
-                                    <th><input type="text" name="nombre" id="nombre" value="<?php echo $administrador->getNom_administrador()?>"required> </th>
+                                    <th><input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $administrador->getNom_administrador()?>"required> </th>
                                     </tr>                                   
                                     <tr>
                                     <th><p> Correo:</p></th>
-                                    <th><input type="email" name="correo" id="correo"  value="<?php echo $administrador->getUsuario_administrador()?>" required></th>
+                                    <th><input type="email" name="correo" id="correo" class="form-control" value="<?php echo $administrador->getUsuario_administrador()?>" required></th>
                                     </tr>
                                     <tr>
                                     <th>  <p> Contraseña:</p></th>
-                                    <th><input type="password" name="contraseña"  id="contraseña" value="<?php echo $administrador->getContraseña_administrador()?>" required> </th>
+                                    <th><input type="password" name="contraseña" class="form-control"  id="contraseña" value="<?php echo $administrador->getContraseña_administrador()?>" required> </th>
                                     </tr>
                                                                    
                             </table>
