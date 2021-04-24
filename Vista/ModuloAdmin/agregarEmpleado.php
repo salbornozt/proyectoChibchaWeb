@@ -12,7 +12,7 @@ if (isset($_POST['addAgregarEmpleado']) == true) {
 
     $nombreCompleto = isset($_POST['nombre']) ? $_POST['nombre'] : null;
     $cedula = isset($_POST['cedula']) ? $_POST['cedula'] : null;
-    $cargo = isset($_POST['cargo']) ? $_POST['cargo'] : null;
+    
     $contrasena = isset($_POST['contrasena']) ? $_POST['contrasena'] : null;
     $email = isset($_POST['correo']) ? $_POST['correo'] : null;
     $nivel = isset($_POST['nivel']) ? $_POST['nivel'] : null;
@@ -22,7 +22,7 @@ if (isset($_POST['addAgregarEmpleado']) == true) {
 
     $empleado->setNom_empleado($nombreCompleto);
     $empleado->setCedula_empleado($cedula);
-    $empleado->setCargo_empleado($cargo);
+    $empleado->setCargo_empleado('Soporte');
     $empleado->setContraseña_empleado($contrasena);
     $empleado->setCorreo_empleado($email);
     $empleado->setCantidad_tickets(0);

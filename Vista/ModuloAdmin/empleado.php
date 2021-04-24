@@ -38,9 +38,7 @@ $empleado = ManejoEmpleado::getList();
                                     <th>  <p> Cédula:  </p> </th>
                                     <th> <input type="number" name="cedula"  required> </th>
                                     </tr>
-                                    <tr><th>  <p> Cargo:  </p>  </th>
-                                    <th> <input type="text" name="cargo"  required> </th>
-                                    </tr>
+                                    
                                     <tr><th>  <p> Contraseña:  </p>  </th>
                                     <th> <input type="password" name="contrasena"  required> </th>
                                     </tr>
@@ -95,8 +93,8 @@ $empleado = ManejoEmpleado::getList();
                                                 <th>Correo</th>
                                                 <th>Tickets</th>
                                                 <th>Nivel</th>
-                                                <th>cod_peticion</th>
-                                                <th>cod_usuario</th>
+                                                <th>Estado</th>
+                                                
                                                                                       
                                               
                                             </tr>
@@ -110,8 +108,7 @@ $empleado = ManejoEmpleado::getList();
                                                 <th>Correo</th>
                                                 <th>Tickets</th>
                                                 <th>Nivel</th>
-                                                <th>cod_peticion</th>
-                                                <th>cod_usuario</th>
+                                                <th>Estado</th>
                                               
                                             </tr>
                                         </tfoot>
@@ -120,9 +117,15 @@ $empleado = ManejoEmpleado::getList();
                                         <?php 
                                         foreach($empleado as $e){
 
+                                            $estado=$e->getCod_peticion();
+                                            if($estado==1){
+                                                $niv='Activo';
+                                            }elseif($estadi==2){
+                                                $niv='Desactivo';
+                                            };
+
                                             echo'
                                             <tr>
-
                                             <td>'.$e->getNom_empleado().'</td>
                                             <td>'.$e->getCedula_empleado().'</td>
                                             <td>'.$e->getCargo_empleado().'</td>
@@ -130,10 +133,9 @@ $empleado = ManejoEmpleado::getList();
                                             <td>'.$e->getCorreo_empleado().'</td>
                                             <td>'.$e->getCantidad_tickets().'</td>
                                             <td>'.$e->getNivel_empleado().'</td>
-                                            <td>'.$e->getCod_peticion().'</td>
-                                            <td>'.$e->getCod_usuario().'</td>
-                                           
-                                           
+                                            <td>'.$niv.'</td>
+                                                                               
+                                        
                                             </tr>';
 
                                         }
