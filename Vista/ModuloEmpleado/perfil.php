@@ -69,7 +69,8 @@ $empleado = ManejoEmpleado::consultarEmpleado($_SESSION['cod_empleado']);
 </div>
 <br>
 <center>
-<button type="submit" class="btn btn-success"  name='addAgregarCliente'>EDITAR PERFIL</button>
+<button type="submit" class="btn btn-success" data-toggle="modal"  name='addAgregarCliente' data-target="#info">EDITAR PERFIL</button>
+
 </center>
 </article>
 <br>
@@ -79,3 +80,52 @@ $empleado = ManejoEmpleado::consultarEmpleado($_SESSION['cod_empleado']);
 </div>
 
 </div>
+
+<!--MODAL ELIMINAR CLIENTE-->
+        <div class="modal fade" id="info">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Escriba sus datos personales</h5>
+                </div>
+                <div class="modal-body"> 
+                <center>
+                <form method="post" action="ModuloEmpleado/modificarDatos.php?">
+                <table>
+                <tr>
+                <th> 
+                <p>Nombre y Apellidos:</p></th><th> 
+                <input type="text" value="<?php echo $empleado->getNom_empleado()?>" name="nombre">
+                </th> 
+                </tr>
+                <tr>
+                <th>
+                <p>Cédula:</p></th><th> 
+                <input type="text" value="<?php echo $empleado->getCedula_empleado()?>" name="cedula" readonly>
+                <th>  
+                </tr>
+                <tr>
+                <th>
+                <p>Correo:</p></th><th> 
+                <input type="text" value="<?php echo $empleado->getCorreo_empleado()?>" name="correo">
+                <th>  
+                </tr>
+                
+                <tr>
+                <th>
+                
+                <p>Contraseña: </p> </th><th> 
+                <input type="text" value="<?php echo $empleado->getContraseña_empleado()?>" name="contraseña">
+                 </th>                                   
+                            </tr>
+                            </table>
+                            </center><br>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-success"  name='modificarDatos'>ModificarDatos</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div></div></div></div>
+                            <center>
+                            </form>
+                            </center>
+                            <!--FIN MODAL ELIMINAR CLIENTE-->

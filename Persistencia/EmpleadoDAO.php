@@ -188,6 +188,18 @@ class EmpleadoDAO implements DAO
         pg_query($this->conexion, $sql);
     }
 
+    public function modificarEmpleado($cod,$nom,$correo,$contraseña)
+    {
+
+        $sql = "UPDATE EMPLEADO SET 
+                                   nom_empleado = '" . $nom . "',
+                                   contraseña_empleado = '" . $contraseña . "',
+                                   correo_empleado = '" . $correo . "'
+                                   where cod_empleado = " . $cod . "
+                                ;";
+        pg_query($this->conexion, $sql);
+    }
+
     /**
      * Method that modifies an employeer entered by parameter
      *

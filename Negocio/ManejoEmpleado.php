@@ -29,6 +29,14 @@ class ManejoEmpleado
         return $empleado;
     }
 
+    public static function modificarEmpleado($cod,$nom,$correo,$contraseña)
+    {
+        $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+        $empleadoDAO->modificarEmpleado($cod,$nom,$correo,$contraseña);
+    }
+
+    
+
     public static function verificarCuentaEmpleado($correo, $pass)
     {
 
