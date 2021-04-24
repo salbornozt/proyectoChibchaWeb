@@ -185,4 +185,22 @@ class AdministradorDAO implements DAO
 
         return self::$administradorDAO;
     }
+
+    /**
+     * Method that modifies an admin entered by parameter
+     *
+     * @param Administrador $administrador
+     * @return void
+     */
+    public function modificarAd($administrador)
+    {
+
+        $sql = "UPDATE ADMINISTRADOR SET 
+                                   nom_administrador = '" . $administrador->getNom_administrador() . "',
+                                   usuario_administrador = '" . $administrador->getUsuario_administrador() . "',
+                                   contraseña_administrador = '" . $administrador->getContraseña_administrador() . "'           
+                                   WHERE cod_administrador = 1
+                                ;";
+        pg_query($this->conexion, $sql);
+    }
 }

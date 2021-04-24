@@ -71,6 +71,16 @@
             $administrador = $administradorDAO->getList();
         }
 
+         /**
+         * Modify an categoria distribuidor
+         * @param Administrador categoria distribuidor to modify
+         * @return void
+         */
+        public static function modificarAd($administrador){
+            $administradorDAO=AdministradorDAO::getAdministradorDAO(self::$conexionBD);
+            $administradorDAO->modificarAd($administrador);
+        }
+
 	    /**
 	    * Change the conexion
 	    */

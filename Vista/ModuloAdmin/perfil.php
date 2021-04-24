@@ -58,7 +58,7 @@ $administrador = ManejoAdministrador::consultarAdministrador($cod);
 </div>
 <br>
 <center>
-<button type="submit" class="btn btn-success"  name='addAgregarCliente'>EDITAR PERFIL</button>
+<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#info"  name='addAgregarCliente'>EDITAR PERFIL</button>
 </center>
 </article>
 <br>
@@ -68,3 +68,45 @@ $administrador = ManejoAdministrador::consultarAdministrador($cod);
 </div>
 
 </div>
+
+
+<!--MODAL UPDATE-->
+
+ <div class="modal fade" id="info">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ingresar nuevos datos</h5>
+                            </div>
+                            <div class="modal-body"> 
+                            <center>
+                            <form method="post" action="ModuloAdmin/actualizarAdmin.php">
+                            <table>
+                                    <tr>
+                                    <th>  <p> Nombre:</p> </th>
+                                    <th><input type="text" name="nombre" id="nombre" value="<?php echo $administrador->getNom_administrador()?>"required> </th>
+                                    </tr>                                   
+                                    <tr>
+                                    <th><p> Correo:</p></th>
+                                    <th><input type="email" name="correo" id="correo"  value="<?php echo $administrador->getUsuario_administrador()?>" required></th>
+                                    </tr>
+                                    <tr>
+                                    <th>  <p> Contraseña:</p></th>
+                                    <th><input type="password" name="contraseña"  id="contraseña" value="<?php echo $administrador->getContraseña_administrador()?>" required> </th>
+                                    </tr>
+                                                                   
+                            </table>
+                                                                             
+                            </center><br>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-success"  name='actualizarAdmin'>Actualizar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div></div></div></div>
+                           
+                            </form>
+
+                           
+                       
+                            <!--FIN UPDATE-->
+
