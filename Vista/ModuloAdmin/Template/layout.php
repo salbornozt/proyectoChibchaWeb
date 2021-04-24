@@ -1,3 +1,27 @@
+<?php
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Persistencia/Util/Conexion.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Empleado.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoEmpleado.php';
+
+$obj = new Conexion();
+$conexion = $obj->conectarDB();
+
+$sql0=" SELECT count(*) FROM empleado";
+$result0=pg_query($conexion,$sql0);
+
+
+$sql01=" SELECT count(*) FROM cliente";
+$result01=pg_query($conexion,$sql01);
+
+
+$sql02=" SELECT count(*) FROM distribuidor";
+$result02=pg_query($conexion,$sql02);
+
+
+$sql03=" SELECT count(*) FROM dominio";
+$result03=pg_query($conexion,$sql03);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -61,5 +85,96 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="admin/dist/assets/demo/datatables-demo.js"></script>
         <script src="admin/dist/assets/demo/chart-pie-demo.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+    var jan =  <?php 
+                    while ($mostrar=pg_fetch_row($result0)){
+                        echo $mostrar[0];
+                    } 
+                ?>;
+      var feb = <?php 
+                    while ($mostrar=pg_fetch_row($result01)){
+                        echo $mostrar[0];
+                    } 
+                ?>;
+      var mar = <?php 
+                    while ($mostrar=pg_fetch_row($result02)){
+                        echo $mostrar[0];
+                    } 
+                ?>;
+      var apr = <?php 
+                    while ($mostrar=pg_fetch_row($result03)){
+                        echo $mostrar[0];
+                    } 
+                ?>;
+      /*
+      var may = 30;
+      var jun = 54;
+      var jul = 34;
+      var aug = 0;
+      var sep = 32;
+      var oct = 43;
+      var nov = 0;
+      var dec = 0;
+      */
+      m = new Chart(document.getElementById("chartjs-line"), {
+        type: "bar",
+        data: {
+            labels: ["Empleados", "Clientes", "Distribuidores", "Dominios"],
+            datasets: [{
+                label: "Entradas",
+                fill: true,
+                backgroundColor: "rgba(246, 142, 6, 0.904)",
+                borderColor: "rgba(246, 142, 6, 0.904)",
+                borderDash: [4, 4],
+                data: [jan, feb, mar, apr]
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            },
+            tooltips: {
+                intersect: false
+            },
+            hover: {
+                intersect: true
+            },
+            plugins: {
+                filler: {
+                    propagate: false
+                }
+            },
+            scales: {
+                xAxes: [{
+                    reverse: true,
+                    gridLines: {
+                        color: "rgba(0,0,0,0.05)"
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        stepSize: 500
+                    },
+                    display: true,
+                    borderDash: [5, 5],
+                    gridLines: {
+                        color: "rgba(0,0,0,0)",
+                        fontColor: "#fff"
+                    }
+                }]
+            }
+        }
+    });
+
+});
+
+
+        </script>
+
     </body>
+
+
 </html>
