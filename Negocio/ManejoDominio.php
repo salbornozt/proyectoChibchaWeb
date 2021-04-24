@@ -25,11 +25,10 @@
             $dominio = $dominioDAO->consult($cod_dominio);
             return $dominio;
         }
-
-        public static function consultarDominioPorUrl($url){
+        public static function usuarioDominio($cod_cliente){
 
             $dominioDAO = DominioDAO::getDominioDAO(self::$conexionBD);
-            $dominio = $dominioDAO->consultarDominioPorUrl($url);
+            $dominio = $dominioDAO->usuarioDominio($cod_cliente);
             return $dominio;
         }
 

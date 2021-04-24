@@ -7,6 +7,7 @@ require_once ("/home/u999386215/public_html/proyectoLibreria/Persistencia/DAO.ph
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Dominio.php';
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Persistencia/Util/Conexion.php';
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Persistencia/DAO.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Usuarioxdominio.php';
 
 /**
  *Represents the DAO of the Paquete entity
@@ -93,6 +94,31 @@ class DominioDAO implements DAO
         $dominio->setCod_distribuidor($row[6]);
 
         return $dominio;
+    }
+
+    public function usuarioDominio($cod_cliente)
+    {
+        $sql = "select cod_dominio,nom_cliente, url, nom_paquete, nom_distribuidor, nom_planpago
+        from cliente, sitio_web, dominio, paquete, distribuidor, plan_pago where 
+        cliente.cod_cliente = sitio_web.cod_cliente and
+        sitio_web.cod_sitio_web = dominio.cod_sitio_web and
+        dominio.cod_paquete = paquete.cod_paquete and
+        dominio.cod_distribuidor = distribuidor.cod_distribuidor and
+        dominio.cod_planpago = plan_pago.cod_planpago and
+		cliente.cod_cliente = $cod_cliente
+        ORDER BY cod_dominio DESC LIMIT 1";
+
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        $row = pg_fetch_array($resultado);
+        $usuario = new Usuarioxdominio();
+            $usuario->setCod_dominio($row[0]);
+            $usuario->setNom_cliente($row[1]);
+            $usuario->setUrl($row[2]);
+            $usuario->setNom_paquete($row[3]);
+            $usuario->setNom_distribuidor($row[4]);
+            $usuario->setNom_planpago($row[5]);
+        
+        return $usuario;
     }
 
     /**
