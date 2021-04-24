@@ -73,6 +73,13 @@
             return $distribuidor;
         }
 
+
+        public  static function getActiveList(){
+            $distribuidorDAO = DistribuidorDAO::getDistribuidorDAO(self::$conexionBD);
+            $distribuidor = $distribuidorDAO->getActiveList();
+            return $distribuidor;
+        }
+
          /**
          * Delete an distribuidor
          * @param Distribuidor distribuidor to modify

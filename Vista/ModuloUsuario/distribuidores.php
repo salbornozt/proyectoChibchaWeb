@@ -38,7 +38,7 @@ if(is_null($dominio->getCod_dominio())){
 }
 
 //$lista = ManejoDistribuidor::consultarTicketCodigoEmpleado(1);
-$lista = ManejoDistribuidor::getList();
+$lista = ManejoDistribuidor::getActiveList();
 //$prueba1 = ManejoDistribuidor::consultarTicket(2);
 
 ?>

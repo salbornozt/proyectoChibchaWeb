@@ -181,6 +181,47 @@ class DistribuidorDAO implements DAO
         */
     }
 
+    public function getActiveList()
+    {
+
+        $sql = "SELECT cod_distribuidor, nom_distribuidor, correo_distribuidor, nom_categoria,cod_estado
+        FROM distribuidor, categoria_distribuidor
+        WHERE distribuidor.cod_categoria_distribuidor = categoria_distribuidor.cod_categoria_distribuidor AND
+        distribuidor.cod_estado = 1
+        ORDER BY nom_distribuidor";
+        $list = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $item = new Distribuidor();
+            $item->setCod_distribuidor($row[0]);
+            $item->setNom_distribuidor($row[1]);
+            $item->setCorreo_distribuidor($row[2]);
+            $item->setNom_categoria_distribuidor($row[3]);
+            $item->setEstado_distribuidor($row[4]);
+            array_push($list, $item);
+
+        }
+        return $list;
+/*
+        $sql = "SELECT * FROM TICKET";
+        $tickets = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $ticket = new Ticket();
+            $ticket->setCod_ticket($row[0]);
+            $ticket->setNom_ticket($row[1]);
+            $ticket->setDescripción_ticket($row[2]);
+            $ticket->setEstado_del_ticket($row[3]);
+            $ticket->setFecha_creacion($row[4]);
+            $ticket->setCod_cliente($row[5]);
+            $ticket->setCod_empleado($row[6]);
+
+            array_push($tickets, $ticket);
+        }
+        return $tickets;
+        */
+    }
+
 
 
     /**
