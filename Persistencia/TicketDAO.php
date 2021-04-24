@@ -148,7 +148,7 @@ class TicketDAO implements DAO
         dominio.cod_paquete = paquete.cod_paquete and
         dominio.cod_distribuidor = distribuidor.cod_distribuidor and
         dominio.cod_planpago = plan_pago.cod_planpago
-        order by nom_cliente";
+        order by cod_dominio";
 
         $usuarios = array();
         if (!$resultado = pg_query($this->conexion, $sql)) die();
