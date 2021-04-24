@@ -21,7 +21,10 @@ if($_POST['paquete']==null){
         }else{
             $cod_planPago = ManejoPLanPago::consultarNomPlanPago($_POST['planpago']); 
             ManejoDominio::modificarCodPlanDominio($_POST['dominio'],$cod_planPago->getCod_planPago());
-            header("location:../Vista/Empleado.php?menu=verUsuarios");
+            echo '<script>
+            alert("Modificado");
+            window.location="../Empleado.php?menu=verUsuarios";          
+            </script>';     
         }
         
     }else{
@@ -29,7 +32,10 @@ if($_POST['paquete']==null){
         ManejoDominio::modificarCodPlanDominio($_POST['dominio'],$cod_planPago->getCod_planPago());
         $cod_distribuidor = ManejoDistribuidor::consultarCodDistribuidor($_POST['distribuidor']); 
         ManejoDominio::modificarCodDistDominio($_POST['dominio'],$cod_distribuidor->getCod_distribuidor());
-        header("location:../Vista/Empleado.php?menu=verUsuarios");
+             echo '<script>
+            alert("Modificado");
+            window.location="../Empleado.php?menu=verUsuarios";          
+            </script>';     
     }
 }else{
     $cod_planPago = ManejoPLanPago::consultarNomPlanPago($_POST['planpago']); 
@@ -38,7 +44,10 @@ if($_POST['paquete']==null){
     ManejoDominio::modificarCodDistDominio($_POST['dominio'],$cod_distribuidor->getCod_distribuidor());
     $cod_paquete = ManejoPaquete::consultarCodPaquete($_POST['paquete']);
     ManejoDominio::modificarCodPackDominio($_POST['dominio'],$cod_paquete->getCod_paquete() );
-    header("location:../Vista/Empleado.php?menu=verUsuarios");
+            echo '<script>
+            alert("Modificado");
+            window.location="../Empleado.php?menu=verUsuarios";          
+            </script>';     
 }
     
     
