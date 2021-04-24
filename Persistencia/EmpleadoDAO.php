@@ -323,4 +323,66 @@ class EmpleadoDAO implements DAO
 
         return self::$empleadoDAO;
     }
+
+    /**
+     * Method to get an DistribuidorDAO object
+     *
+     * @param Object $conexion
+     * @return DistribuidorDAO
+     */
+    public function getListActivar()
+    {
+
+        $sql = "SELECT cedula_empleado
+        FROM empleado
+        WHERE empleado.cod_peticion = 2
+        ";
+        $list = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $item = new Empleado();
+            $item->setCedula_empleado($row[0]);
+           
+            array_push($list, $item);
+
+        }
+        return $list;
+
+    }
+
+    public function getListDesactivar()
+    {
+
+        $sql = "SELECT cedula_empleado
+        FROM empleado
+        WHERE empleado.cod_peticion = 1
+        ";
+        $list = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $item = new Empleado();
+            $item->setCedula_empleado($row[0]);
+           
+            array_push($list, $item);
+
+        }
+        return $list;
+
+    }
+
+    public function cambiarEstadoActivado($cedula_empleado)
+  
+    {
+        $sql = "UPDATE  EMPLEADO SET COD_PETICION=1 WHERE cedula_empleado = " . $cedula_empleado;
+
+        pg_query($this->conexion, $sql);
+    }
+
+    public function cambiarEstadoDesactivado($cedula_empleado)
+  
+    {
+        $sql = "UPDATE  EMPLEADO SET COD_PETICION=2 WHERE cedula_empleado = " . $cedula_empleado;
+
+        pg_query($this->conexion, $sql);
+    }
 }

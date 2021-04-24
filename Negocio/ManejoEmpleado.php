@@ -144,6 +144,39 @@ class ManejoEmpleado
     }
 
     /**
+         * Delete an distribuidor
+         * @param Cliente cliente to modify
+         * @return void
+         */
+        public static function cambiarEstadoActivado($empleado){
+            $empleadoDAO=EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+            $empleadoDAO->cambiarEstadoActivado($empleado);
+        }
+
+        public static function cambiarEstadoDesactivado($empleado){
+            $empleadoDAO=EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+            $empleadoDAO->cambiarEstadoDesactivado($empleado);
+        }
+
+    
+        public static function getListActivar()
+        {
+            $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+            $empleado = $empleadoDAO->getListActivar();
+            return $empleado;
+           
+        }
+
+        
+        public static function getListDesactivar()
+        {
+            $empleadoDAO = EmpleadoDAO::getEmpleadoDAO(self::$conexionBD);
+            $empleado = $empleadoDAO->getListDesactivar();
+            return $empleado;
+           
+        }
+
+    /**
      * Change the conexion
      */
     public static function setConexionBD($conexionBD)

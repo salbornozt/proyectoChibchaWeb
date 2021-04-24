@@ -9,6 +9,8 @@ $conexion = $obj->conectarDB();
 ManejoEmpleado::setConexionBD($conexion);
 
 $empleado = ManejoEmpleado::getList();
+$empleado2 = ManejoEmpleado::getListActivar();
+$empleado3 = ManejoEmpleado::getListDesactivar();
 
 ?>
 
@@ -67,6 +69,73 @@ $empleado = ManejoEmpleado::getList();
                             </center>
                             <!--FIN MODAL AGREGAR EMPLEADO-->
                             <p>.                 .</p>
+                            <!--MODAL HABILITAR CLIENTE-->
+                            <div class="modal fade" id="info3">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Que empleado desea activar?</h5>
+                            </div>
+                            <div class="modal-body"> 
+                            <center>
+                            <form method="post" action="ModuloAdmin/activarEmpleado.php">
+                            <table>
+                                    <tr><th>  <p> Cédula: <select name="cedula">
+                                           
+                                                    <?php 
+                                                    foreach($empleado2 as $c){
+                                                     echo'
+                                                        <option>'.$c->getCedula_empleado().'</option>';
+                                                    }?>
+                                                    
+                                    </select> </p> </th></tr>
+                            </table>
+                            </center><br>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-success"  name='activarEmpleado'>Activar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div></div></div></div>
+                            <center>
+                            </form>
+
+                            <span class="btn btn-success" data-toggle="modal" data-target="#info3">Activar empleado</span>
+                            </center>
+                            <!--FIN MODAL HABILITAR CLIENTE-->
+                            <p>.                 .</p>
+                            <!--MODAL DESHABILITAR CLIENTE-->
+                            <div class="modal fade" id="info2">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Que empleado desea desactivar?</h5>
+                            </div>
+                            <div class="modal-body"> 
+                            <center>
+                            <form method="post" action="ModuloAdmin/desactivarEmpleado.php">
+                            <table>
+                                    <tr><th>  <p> Cédula: <select name="cedula">
+                                           
+                                                    <?php 
+                                                    foreach($empleado3 as $c){
+                                                     echo'
+                                                        <option>'.$c->getCedula_empleado().'</option>';
+                                                    }?>
+                                                    
+                                    </select> </p> </th></tr>
+                            </table>
+                            </center><br>
+                            <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger"  name='desactivarEmpleado'>Desactivar</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div></div></div></div>
+                            <center>
+                            </form>
+
+                            <span class="btn btn-danger" data-toggle="modal" data-target="#info2">Desactivar empleado</span>
+                            </center>
+                            <!--FIN MODAL DESHABILITAR CLIENTE-->
 
                             
                         </ol>
@@ -120,7 +189,7 @@ $empleado = ManejoEmpleado::getList();
                                             $estado=$e->getCod_peticion();
                                             if($estado==1){
                                                 $niv='Activo';
-                                            }elseif($estadi==2){
+                                            }elseif($estado==2){
                                                 $niv='Desactivo';
                                             };
 
