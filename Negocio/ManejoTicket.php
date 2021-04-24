@@ -29,6 +29,14 @@ class ManejoTicket
         return $ticket;
     }
 
+    public static function consultTotalTicketsxClientes($cod_ticket)
+    {
+
+        $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
+        $ticket = $TicketDAO->consultTotalTicketsxCliente($cod_ticket);
+        return $ticket;
+    }
+
     public static function consultarTicketxCliente($cod_ticket)
     {
 
@@ -128,6 +136,18 @@ class ManejoTicket
     {
         $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
         $ticket = $TicketDAO->getList();
+        return $ticket;
+    }
+
+    /**
+     * List of categoria distribuidor
+     * @return Ticket[] List of all the categoria distribuidor in the Data Base
+     */
+
+    public static function getListTickxCliente($cod_cliente)
+    {
+        $TicketDAO = TicketDAO::getTicketDAO(self::$conexionBD);
+        $ticket = $TicketDAO->getListTicketxCliente($cod_cliente);
         return $ticket;
     }
 

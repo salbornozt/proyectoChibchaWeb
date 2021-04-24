@@ -82,6 +82,34 @@ class TicketDAO implements DAO
         $ticket = new Ticket();
 
         $ticket->setCod_ticket($row[0]);
+        echo $ticket->setCod_cliente($row[0]);
+        $ticket->setNom_ticket($row[1]);
+        $ticket->setDescripción_ticket($row[2]);
+        $ticket->setEstado_del_ticket($row[3]);
+        $ticket->setFecha_creacion($row[4]);
+        $ticket->setCod_cliente($row[5]);
+        $ticket->setCod_empleado($row[6]);
+
+        return $ticket;
+    }
+
+    /**
+     * Method to query an user by his code type
+     *
+     * @param int $cod_cliente
+     * @return Ticket
+     */
+    public function consultTotalTicketsxCliente($cod_cliente)
+    {
+
+        $sql = "SELECT COUNT(*) FROM  TICKET where cod_cliente= " . $cod_cliente;
+
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        $row = pg_fetch_array($resultado);
+
+        $ticket = new Ticket();
+
+        $ticket->setCod_cliente($row[0]);
         $ticket->setNom_ticket($row[1]);
         $ticket->setDescripción_ticket($row[2]);
         $ticket->setEstado_del_ticket($row[3]);
@@ -287,6 +315,33 @@ class TicketDAO implements DAO
     {
 
         $sql = "SELECT * FROM TICKET";
+        $tickets = array();
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        while ($row = pg_fetch_array($resultado)) {
+            $ticket = new Ticket();
+            $ticket->setCod_ticket($row[0]);
+            $ticket->setNom_ticket($row[1]);
+            $ticket->setDescripción_ticket($row[2]);
+            $ticket->setEstado_del_ticket($row[3]);
+            $ticket->setFecha_creacion($row[4]);
+            $ticket->setCod_cliente($row[5]);
+            $ticket->setCod_empleado($row[6]);
+
+            array_push($tickets, $ticket);
+        }
+        return $tickets;
+    }
+
+    /**
+     * Method to get an TicketDAO object
+     *
+     *
+     * @return Ticket
+     */
+    public function getListTicketxCliente($cod_cliente)
+    {
+
+        $sql = "SELECT * FROM TICKET WHERE cod_cliente= " . $cod_cliente . " order by cod_ticket";
         $tickets = array();
         if (!$resultado = pg_query($this->conexion, $sql)) die();
         while ($row = pg_fetch_array($resultado)) {

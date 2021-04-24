@@ -46,7 +46,7 @@ class TarjetaCreditoDAO implements DAO
     {
 
         $sql = "SELECT * FROM TARJETA_CREDITO WHERE cod_tarjeta_credito = " . $cod_tarjeta_credito;
-        echo $sql;
+        //echo $sql;
         if (!$resultado = pg_query($this->conexion, $sql)) die();
         $row = pg_fetch_array($resultado);
 

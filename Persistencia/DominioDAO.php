@@ -69,6 +69,34 @@ class DominioDAO implements DAO
         return $dominio;
     }
 
+
+    /**
+     * Method to query an user by his code type
+     *
+     * @param int $cod_dominio
+     * @return Dominio
+     */
+    public function consultDominioXSitioWeb($cod_sitio_web)
+    {
+
+        $sql = "SELECT * FROM DOMINIO WHERE cod_sitio_web= " . $cod_sitio_web;
+
+        if (!$resultado = pg_query($this->conexion, $sql)) die();
+        $row = pg_fetch_array($resultado);
+
+        $dominio = new Dominio();
+
+        $dominio->setCod_dominio($row[0]);
+        $dominio->setCod_sitio_web($row[1]);
+        $dominio->setCod_paquete($row[2]);
+        $dominio->setCod_planPago($row[3]);
+        $dominio->setUrl($row[4]);
+        $dominio->setFecha_creacion($row[5]);
+        $dominio->setCod_distribuidor($row[6]);
+
+        return $dominio;
+    }
+
     /**
      * Method to query an user by his code type
      *
@@ -111,13 +139,13 @@ class DominioDAO implements DAO
         if (!$resultado = pg_query($this->conexion, $sql)) die();
         $row = pg_fetch_array($resultado);
         $usuario = new Usuarioxdominio();
-            $usuario->setCod_dominio($row[0]);
-            $usuario->setNom_cliente($row[1]);
-            $usuario->setUrl($row[2]);
-            $usuario->setNom_paquete($row[3]);
-            $usuario->setNom_distribuidor($row[4]);
-            $usuario->setNom_planpago($row[5]);
-        
+        $usuario->setCod_dominio($row[0]);
+        $usuario->setNom_cliente($row[1]);
+        $usuario->setUrl($row[2]);
+        $usuario->setNom_paquete($row[3]);
+        $usuario->setNom_distribuidor($row[4]);
+        $usuario->setNom_planpago($row[5]);
+
         return $usuario;
     }
 
@@ -157,14 +185,14 @@ class DominioDAO implements DAO
                                    cod_planPago = " . $dominio->getCod_planPago() . ",
                                    url = '" . $dominio->getUrl() . "',
                                    fecha_creacion = " . $dominio->getFecha_creacion() . ",
-                                   cod_distribuidor = ".$dominio->getCod_distribuidor()."  
+                                   cod_distribuidor = " . $dominio->getCod_distribuidor() . "  
                                    where cod_dominio = " . $dominio->getCod_dominio() . "
                                 ;";
         pg_query($this->conexion, $sql);
     }
 
 
-    public function modificarPlanPago($dominio,$planPago)
+    public function modificarPlanPago($dominio, $planPago)
     {
 
         $sql = "UPDATE DOMINIO SET cod_planpago = " . $planPago . " 
@@ -173,7 +201,7 @@ class DominioDAO implements DAO
         pg_query($this->conexion, $sql);
     }
 
-    public function modificarCodPago($dominio,$planPago)
+    public function modificarCodPago($dominio, $planPago)
     {
 
         $sql = "UPDATE DOMINIO SET cod_planpago = " . $planPago . " 
@@ -183,7 +211,7 @@ class DominioDAO implements DAO
     }
 
 
-    public function modificarDistribuidor($dominio,$distribuidor)
+    public function modificarDistribuidor($dominio, $distribuidor)
     {
 
         $sql = "UPDATE DOMINIO SET cod_distribuidor = " . $distribuidor . " 
@@ -192,7 +220,7 @@ class DominioDAO implements DAO
         pg_query($this->conexion, $sql);
     }
 
-    public function modificarPaquete($dominio,$paquete)
+    public function modificarPaquete($dominio, $paquete)
     {
 
         $sql = "UPDATE DOMINIO SET cod_paquete = " . $paquete . " 
@@ -227,20 +255,21 @@ class DominioDAO implements DAO
 
         if (!$resultado = pg_query($this->conexion, $sql)) die();
 
-        $dominio = array();
+        $dominios = array();
 
         while ($row = pg_fetch_array($resultado)) {
+            $dominio = new Dominio();
             $dominio->setCod_dominio($row[0]);
-        $dominio->setCod_sitio_web($row[1]);
-        $dominio->setCod_paquete($row[2]);
-        $dominio->setCod_planPago($row[3]);
-        $dominio->setUrl($row[4]);
-        $dominio->setFecha_creacion($row[5]);
-        $dominio->setCod_distribuidor($row[6]);            
+            $dominio->setCod_sitio_web($row[1]);
+            $dominio->setCod_paquete($row[2]);
+            $dominio->setCod_planPago($row[3]);
+            $dominio->setUrl($row[4]);
+            $dominio->setFecha_creacion($row[5]);
+            $dominio->setCod_distribuidor($row[6]);
 
-            $dominio[] = $dominio;
+            array_push($dominios, $dominio);
         }
-        return $dominio;
+        return $dominios;
     }
 
 
