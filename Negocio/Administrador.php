@@ -51,7 +51,7 @@ class Administrador{
      */ 
     public function getCod_administrador()
     {
-        return $this->getCod_administrador;
+        return $this->cod_administrador;
     }
 
     /**

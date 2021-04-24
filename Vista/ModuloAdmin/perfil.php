@@ -1,16 +1,20 @@
 <?php
+
+
+
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Persistencia/Util/Conexion.php';
-require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Cliente.php';
-require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoCliente.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Administrador.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoAdministrador.php';
+
+session_start();
 
 $obj = new Conexion();
 $conexion = $obj->conectarDB();
 
-/*ManejoCliente::setConexionBD($conexion);
+$cod=1;
+ManejoAdministrador::setConexionBD($conexion);
 
-$cliente = ManejoCliente::getList();
-$cliente2 = ManejoCliente::getListActivar();
-$cliente3 = ManejoCliente::getListDesactivar();*/
+$administrador = ManejoAdministrador::consultarAdministrador($cod);
 
 ?>
 <div class="container" data-aos="fade-up">
@@ -33,20 +37,20 @@ $cliente3 = ManejoCliente::getListDesactivar();*/
                   <p class="entry-meta">Nombre y Apellidos:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="nombreApellido" class="form-control" id="nombreApellido" placeholder="Nombres y apellidos" value="" readonly>
+                  <input type="text" name="nombreApellido" class="form-control" id="nombreApellido" placeholder="Nombres y apellidos" value="<?php echo $administrador->getNom_administrador()?>" readonly>
                   <p><br></p>
                 </div>
                 <div class="col-lg-3">
                   <p p class="entry-meta">Correo eléctronico:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="correo" class="form-control" id="correo" placeholder="Correo electrónico" value="" readonly>
+                  <input type="text" name="correo" class="form-control" id="correo" placeholder="Correo electrónico" value="<?php echo $administrador->getUsuario_administrador()?>" readonly>
                 </div>
                 <div class="col-lg-3">
                   <p class="entry-meta">Contraseña:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="contraseña" class="form-control" id="name" placeholder="Contraseña" value="pepe" readonly>
+                  <input type="text" name="contraseña" class="form-control" id="name" placeholder="Contraseña" value="<?php echo $administrador->getContraseña_administrador()?>" readonly>
                 </div>
                 
         </div>

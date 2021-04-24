@@ -49,14 +49,14 @@ class AdministradorDAO implements DAO
      */
     public function consult($cod_administrador)
     {
-
+        
         $sql = "SELECT * FROM ADMINISTRADOR WHERE cod_administrador = " . $cod_administrador;
 
         if (!$resultado = pg_query($this->conexion, $sql)) die();
 
         $row = pg_fetch_array($resultado);
 
-        $administrador = new getAdministrador();
+        $administrador = new Administrador();
 
         $administrador->setCod_administrador($row[0]);
         $administrador->setNom_administrador($row[1]);
