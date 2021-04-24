@@ -15,6 +15,9 @@ if (isset($_GET['menu'])) {
     if ($_GET['menu'] == 'salir') {
         include_once("../Vista/index.php");
     }
+    if ($_GET['menu'] == 'perfil') {
+        include_once("../Vista/ModuloEmpleado/perfil.php");
+    }
 } else {
     include_once("../Vista/ModuloEmpleado/index.php");
 }
