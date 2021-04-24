@@ -210,10 +210,7 @@ class TicketDAO implements DAO
     public function siguienteNivel($ticket, $nivel)
     {
 
-        $sqlCodEmpleado = "SELECT cod_empleado FROM empleado
-        WHERE cantidad_de_tickets = (SELECT MIN(cantidad_de_tickets) FROM empleado where nivel_empleado = " . $nivel . ") 
-		
-        ORDER BY cod_empleado limit 1";
+        $sqlCodEmpleado = "SELECT * FROM empleado where nivel_empleado = ".$nivel." ORDER BY cantidad_de_tickets ASC LIMIT 1";
         $codEmpleado = 0;
         if (!$resultado = pg_query($this->conexion, $sqlCodEmpleado)) die();
         while ($row = pg_fetch_array($resultado)) {
