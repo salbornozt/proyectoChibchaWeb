@@ -1,16 +1,18 @@
 <?php
+session_start();
 require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Persistencia/Util/Conexion.php';
-require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Cliente.php';
-require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoCliente.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/Empleado.php';
+require_once ($_SERVER["DOCUMENT_ROOT"]) . '/proyectoChibchaWeb/Negocio/ManejoEmpleado.php';
 
 $obj = new Conexion();
 $conexion = $obj->conectarDB();
 
-/*ManejoCliente::setConexionBD($conexion);
+ManejoEmpleado::setConexionBD($conexion);
 
-$cliente = ManejoCliente::getList();
-$cliente2 = ManejoCliente::getListActivar();
-$cliente3 = ManejoCliente::getListDesactivar();*/
+$empleado = ManejoEmpleado::consultarEmpleado($_SESSION['cod_empleado']);
+//$cliente = ManejoCliente::getList();
+//$cliente2 = ManejoCliente::getListActivar();
+//$cliente3 = ManejoCliente::getListDesactivar();*/
 
 ?>
 <div class="container" data-aos="fade-up">
@@ -33,33 +35,33 @@ $cliente3 = ManejoCliente::getListDesactivar();*/
                   <p class="entry-meta">Nombre y Apellidos:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="nombreApellido" class="form-control" id="nombreApellido" placeholder="Nombres y apellidos" value="" readonly>
+                  <input type="text" name="nombreApellido" class="form-control" id="nombreApellido" placeholder="Nombres y apellidos" value="<?php echo $empleado->getNom_empleado()?>" readonly>
                   <p><br></p>
                 </div>
                 <div class="col-lg-3">
                   <p p class="entry-meta">Número de indentificación:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="nroIdentificacion" class="form-control" id="nroIdentificacion" value="" readonly>
+                  <input type="text" name="nroIdentificacion" class="form-control" id="nroIdentificacion" value="<?php echo $empleado->getCedula_empleado()?>" readonly>
                 </div>
                 <div class="col-lg-3">
-                  <p p class="entry-meta">Telefono:</p>
+                  <p p class="entry-meta">Cargo:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfonos" value="" readonly>
+                  <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfonos" value="<?php echo $empleado->getCargo_empleado()?>" readonly>
                   <p><br></p>
                 </div>
                 <div class="col-lg-3">
                   <p p class="entry-meta">Correo eléctronico:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="correo" class="form-control" id="correo" placeholder="Correo electrónico" value="" readonly>
+                  <input type="text" name="correo" class="form-control" id="correo" placeholder="Correo electrónico" value="<?php echo $empleado->getCorreo_empleado()?>" readonly>
                 </div>
                 <div class="col-lg-3">
-                  <p class="entry-meta">Contraseña:</p>
+                  <p class="entry-meta">Nivel:</p>
                 </div>
                 <div class="col-lg-3">
-                  <input type="text" name="contraseña" class="form-control" id="name" placeholder="Contraseña" value="pepe" readonly>
+                  <input type="text" name="contraseña" class="form-control" id="name" placeholder="Contraseña" value="<?php echo $empleado->getNivel_empleado()?>" readonly>
                 </div>
                 
         </div>
