@@ -21,7 +21,7 @@ ManejoPlanPago::setConexionBD($conexion);
 ManejoDistribuidor::setConexionBD($conexion);
 $lista = ManejoTicket::usuariosxdominio();
 $planesPago = ManejoPlanPago::getList();
-$dist = ManejoDistribuidor::getList();
+$dist = ManejoDistribuidor::getActiveList();
 $paquete = ManejoPaquete::getList();
 
 ?>
