@@ -92,7 +92,7 @@ $lista = ManejoDistribuidor::getActiveList();
         <i class="bi bi-phone-fill phone-icon"></i> +57 304 436 6165
       </div>
       <div class="cta d-none d-md-block">
-      <a href="#about" class="scrollto">Cerrar Sesión</a>
+      <a href="../logout.php" class="scrollto">Cerrar Sesión</a>
       </div>
     </div>
   </div>
