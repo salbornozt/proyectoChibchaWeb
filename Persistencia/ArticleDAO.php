@@ -149,3 +149,4 @@ class ArticleDAO implements DAO
         return self::$articleDAO;
     }
 }
+?>

@@ -62,3 +62,4 @@ if (is_null($admin)) {
     $_SESSION['cod_usuario'] = $admin->getCod_usuario();
     header("Location:../Vista/Admin.php?menu=bienvenido");
 }
+?>

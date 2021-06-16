@@ -204,3 +204,4 @@ class AdministradorDAO implements DAO
         pg_query($this->conexion, $sql);
     }
 }
+?>
